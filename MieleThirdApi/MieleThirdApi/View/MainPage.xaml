@@ -16,7 +16,7 @@
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
         <ListView ItemsSource="{Binding DeviceList}"
-                  IsPullToRefreshEnabled="false"                  
+                  IsPullToRefreshEnabled="false"            
                   RefreshCommand="{Binding UpdateCommand}"             
                   HorizontalOptions="Center"
                   VerticalOptions="CenterAndExpand"
@@ -25,13 +25,14 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                            <Label Text="{Binding State}" VerticalTextAlignment="Center" FontSize="Large" />
-                            <Label Text="{Binding Ident}" VerticalTextAlignment="Center" FontSize="Small" />
+                            <Label Text="{Binding Ident}" VerticalTextAlignment="Center" FontSize="Large" />
+                            <Label Text="{Binding State}" VerticalTextAlignment="Center" FontSize="Small" />
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button Text="Navigate" Command="{Binding NavigateCommand}"></Button>
     </StackLayout>
 
 </ContentPage>

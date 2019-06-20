@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MieleThirdApi.Model;
+using MieleThirdApi.View;
 
 namespace MieleThirdApi.ViewModel
 {
@@ -14,8 +15,11 @@ namespace MieleThirdApi.ViewModel
         {
             StartPolling();
             UpdateCommand = new Command(async () => await GetDeviceList());
-            
+            NavigateCommand = new Command(async () => await ItemSelected());
+
         }
+
+        private bool _pollingIsActive = true;
 
         private bool _isBusy = false;
         public bool IsBusy
@@ -51,11 +55,18 @@ namespace MieleThirdApi.ViewModel
                 Count = _count.ToString();
                 GetDeviceList(); //Führt er das hier denn nu eigentlich auf dem MainThread aus? Oder Macht der einen Thread auf und arbeitet das ab, so wie es sollte
 
-                return true; // True = Repeat again, False = Stop the timer
+                return _pollingIsActive; // True = Repeat again, False = Stop the timer
             });
         }
 
+        async Task ItemSelected()
+        {
+            _pollingIsActive = false;
+            await _navigation.PushModalAsync(new DetailPage());
+        }
+
         public ICommand UpdateCommand { get; set; }
+        public ICommand NavigateCommand { get; set; }
 
         async Task GetDeviceList()
         {
