@@ -16,14 +16,15 @@
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
         <ListView ItemsSource="{Binding DeviceList}"
-                  BackgroundColor="Accent"                  
+                  IsPullToRefreshEnabled="true"
+                  RefreshCommand="{Binding UpdateCommand}"             
                   HorizontalOptions="Center"
                   VerticalOptions="CenterAndExpand">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout BackgroundColor="AliceBlue">
-                            <Label Text="{Binding State}" VerticalTextAlignment="Center" FontSize="Small" />
+                        <StackLayout VerticalOptions="CenterAndExpand">
+                            <Label Text="{Binding State}" VerticalTextAlignment="Center" FontSize="Large" />
                             <Label Text="{Binding Ident}" VerticalTextAlignment="Center" FontSize="Small" />
                         </StackLayout>                        
                     </ViewCell>
