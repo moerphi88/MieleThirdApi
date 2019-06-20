@@ -16,22 +16,22 @@
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
         <ListView ItemsSource="{Binding DeviceList}"
-                  IsPullToRefreshEnabled="true"
+                  IsPullToRefreshEnabled="false"                  
                   RefreshCommand="{Binding UpdateCommand}"             
                   HorizontalOptions="Center"
-                  VerticalOptions="CenterAndExpand">
+                  VerticalOptions="CenterAndExpand"
+                  HasUnevenRows="true">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout VerticalOptions="CenterAndExpand">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
                             <Label Text="{Binding State}" VerticalTextAlignment="Center" FontSize="Large" />
                             <Label Text="{Binding Ident}" VerticalTextAlignment="Center" FontSize="Small" />
-                        </StackLayout>                        
+                        </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="Update" Command="{Binding UpdateCommand}" />
     </StackLayout>
 
 </ContentPage>

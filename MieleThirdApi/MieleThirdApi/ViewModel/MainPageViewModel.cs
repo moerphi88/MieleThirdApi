@@ -12,12 +12,9 @@ namespace MieleThirdApi.ViewModel
     {
         public MainPageViewModel(INavigation navigation) : base(navigation)
         {
-            StartTimer();
+            StartPolling();
             UpdateCommand = new Command(async () => await GetDeviceList());
-
-            DeviceList = new ObservableCollection<Model.Device>();
-            DeviceList.Add(new Model.Device() { State = "Hans", Ident = "Franz" });
-            DeviceList.Add(new Model.Device() { State = "Hans", Ident = "Franz" });
+            
         }
 
         private bool _isBusy = false;
@@ -26,8 +23,6 @@ namespace MieleThirdApi.ViewModel
             get { return _isBusy; }
             set { _isBusy = value; OnPropertyChanged(); }
         }
-
-        public string Titel { get; set; } = "MainPage";
 
         private ObservableCollection<Model.Device> _deviceList;
         public ObservableCollection<Model.Device> DeviceList
@@ -48,12 +43,13 @@ namespace MieleThirdApi.ViewModel
         }
 
         // https://xamarinhelp.com/xamarin-forms-timer/
-        void StartTimer()
+        void StartPolling()
         {
-            Xamarin.Forms.Device.StartTimer(TimeSpan.FromSeconds(3), () =>
+            Xamarin.Forms.Device.StartTimer(TimeSpan.FromSeconds(5), () =>
             {
                 _count++;
                 Count = _count.ToString();
+                GetDeviceList(); //Führt er das hier denn nu eigentlich auf dem MainThread aus? Oder Macht der einen Thread auf und arbeitet das ab, so wie es sollte
 
                 return true; // True = Repeat again, False = Stop the timer
             });
