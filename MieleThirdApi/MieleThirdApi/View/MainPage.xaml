@@ -6,11 +6,31 @@
 
     <StackLayout>
         <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
+        <Label Text="{Binding Titel}" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
-        <Label Text="{Binding Titel}"></Label>
-        <Label Text="{Binding Count}"></Label>
+        <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="true" IsRunning="true"
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />
+        <Label Text="{Binding Count}" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />
+        <ListView ItemsSource="{Binding DeviceList}"
+                  BackgroundColor="Accent"                  
+                  HorizontalOptions="Center"
+                  VerticalOptions="CenterAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout BackgroundColor="AliceBlue">
+                            <Label Text="{Binding State}" VerticalTextAlignment="Center" FontSize="Small" />
+                            <Label Text="{Binding Ident}" VerticalTextAlignment="Center" FontSize="Small" />
+                        </StackLayout>                        
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Update" Command="{Binding UpdateCommand}" />
     </StackLayout>
 
 </ContentPage>
