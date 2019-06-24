@@ -1,4 +1,5 @@
-﻿using MieleThirdApi.ViewModel;
+﻿using MieleThirdApi.Model;
+using MieleThirdApi.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,10 @@ namespace MieleThirdApi.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DetailPage : ContentPage
 	{
-		public DetailPage ()
+		public DetailPage (Appliance details)
 		{
 			InitializeComponent ();
-            BindingContext = new DetailPageViewModel(this.Navigation);
+            BindingContext = new DetailPageViewModel(this.Navigation, details);
 		}
 	}
 }

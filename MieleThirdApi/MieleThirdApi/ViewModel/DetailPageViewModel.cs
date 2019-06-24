@@ -10,10 +10,31 @@ namespace MieleThirdApi.ViewModel
 {
     class DetailPageViewModel : BaseViewModel
     {
-        public DetailPageViewModel(INavigation navigation) : base(navigation)
+        public DetailPageViewModel(INavigation navigation, Appliance details) : base(navigation)
         {
-           // UpdateCommand = new Command(async () => await GetDeviceList());
+            // UpdateCommand = new Command(async () => await GetDeviceList());
+            if (null != details)
+            {
+                Details.Ident = details.Ident.type.value_localized;
+                Details.State = details.State.status.value_localized;
+            } else
+            {
+                Details = new Model.Device() { Ident = "Schwein", State = "Hunhn" };            
+            }
+        }
 
+        private Model.Device _details;
+        public Model.Device Details
+        {
+            get
+            {
+                return _details;
+            }
+            set
+            {
+                _details = value;
+                OnPropertyChanged();
+            }
         }
 
         private bool _pollingIsActive = true;

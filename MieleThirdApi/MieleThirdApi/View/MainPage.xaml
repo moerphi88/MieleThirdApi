@@ -20,7 +20,8 @@
                   RefreshCommand="{Binding UpdateCommand}"             
                   HorizontalOptions="Center"
                   VerticalOptions="CenterAndExpand"
-                  HasUnevenRows="true">
+                  HasUnevenRows="true"
+                  SelectedItem="{Binding ItemSelected, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -32,7 +33,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="Navigate" Command="{Binding NavigateCommand}"></Button>
     </StackLayout>
 
 </ContentPage>

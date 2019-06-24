@@ -15,9 +15,10 @@ namespace MieleThirdApi.ViewModel
         {
             StartPolling();
             UpdateCommand = new Command(async () => await GetDeviceList());
-            NavigateCommand = new Command(async () => await ItemSelected());
+            NavigateCommand = new Command(async () => await NavigateToDetailPageAsync(null));
 
         }
+        
 
         private bool _pollingIsActive = true;
 
@@ -26,6 +27,31 @@ namespace MieleThirdApi.ViewModel
         {
             get { return _isBusy; }
             set { _isBusy = value; OnPropertyChanged(); }
+        }
+
+        private object _itemSelected;
+        public object ItemSelected
+        {
+            get
+            {
+                return _itemSelected;
+            }
+            set
+            {
+                if (value != _itemSelected)
+                {
+                    _itemSelected = value;
+                    OnPropertyChanged();
+                    if(value != null)
+                    {
+                        //An dieser Stelle, könnte ich auch die Funktion aufrufen
+                        // Anscheinend funktioniert die Parameterübertragung nur, wenn man ein COmmand bindet und dann per CommandParameter einen Parameter übergibt. Um es im Code zu lösen habe ich dazu keine Lösung gefunden
+                        NavigateCommand.Execute(new object());
+                        //NavigateToDetailPageAsync(_itemSelected as Appliance);
+                        //ItemSelected = null;
+                    }
+                }
+            }
         }
 
         private ObservableCollection<Model.Device> _deviceList;
@@ -59,14 +85,20 @@ namespace MieleThirdApi.ViewModel
             });
         }
 
-        async Task ItemSelected()
+        async Task NavigateToDetailPageAsync(Appliance details)
         {
             _pollingIsActive = false;
-            await _navigation.PushModalAsync(new DetailPage());
+            await _navigation.PushModalAsync(new DetailPage(details));
         }
 
         public ICommand UpdateCommand { get; set; }
         public ICommand NavigateCommand { get; set; }
+        //{
+        //    get
+        //    {
+        //        return new Command<Appliance>(async (x) => await NavigateToDetailPageAsync(x));
+        //    }
+        //}
 
         async Task GetDeviceList()
         {
