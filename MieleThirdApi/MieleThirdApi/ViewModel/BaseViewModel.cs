@@ -17,8 +17,8 @@ namespace MieleThirdApi.ViewModels
             _navigation = navigation;
 
             //Hier kann später die Compiler MOCK Abfrage rein
-            //_restApi = new RestMockService();
-            _restApi = new RestApiService();
+            _restApi = new RestMockService();
+            //_restApi = new RestApiService();
         }
 
 

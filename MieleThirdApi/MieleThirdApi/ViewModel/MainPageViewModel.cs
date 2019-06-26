@@ -15,8 +15,7 @@ namespace MieleThirdApi.ViewModel
         {
             StartPolling();
             UpdateCommand = new Command(async () => await GetDeviceList());
-            NavigateCommand = new Command(async () => await NavigateToDetailPageAsync(null));
-
+            NavigateCommand = new Command(async () => await NavigateToDetailPageAsync());
         }
         
 
@@ -28,6 +27,10 @@ namespace MieleThirdApi.ViewModel
             get { return _isBusy; }
             set { _isBusy = value; OnPropertyChanged(); }
         }
+
+
+
+        private string _fabNr = "12345678";
 
         private object _itemSelected;
         public object ItemSelected
@@ -46,9 +49,11 @@ namespace MieleThirdApi.ViewModel
                     {
                         //An dieser Stelle, könnte ich auch die Funktion aufrufen
                         // Anscheinend funktioniert die Parameterübertragung nur, wenn man ein COmmand bindet und dann per CommandParameter einen Parameter übergibt. Um es im Code zu lösen habe ich dazu keine Lösung gefunden
-                        NavigateCommand.Execute(new object());
-                        //NavigateToDetailPageAsync(_itemSelected as Appliance);
-                        //ItemSelected = null;
+
+                        _fabNr = ItemSelected.ToString();
+                        NavigateCommand.Execute(ItemSelected);
+                        
+                        ItemSelected = null; // Ich darf es nicht wieder zurücksetzen, wenn ich dieses Element übergebe, aber ich könnte hier eine Kopie anlegen oder aber gleich das wichtigste herusfiltern und übertragen?! Die FabNr, die ich zum pollen brauche
                     }
                 }
             }
@@ -85,20 +90,14 @@ namespace MieleThirdApi.ViewModel
             });
         }
 
-        async Task NavigateToDetailPageAsync(Appliance details)
+        async Task NavigateToDetailPageAsync()
         {
             _pollingIsActive = false;
-            await _navigation.PushModalAsync(new DetailPage(details));
+            await _navigation.PushModalAsync(new DetailPage(_fabNr));
         }
 
         public ICommand UpdateCommand { get; set; }
         public ICommand NavigateCommand { get; set; }
-        //{
-        //    get
-        //    {
-        //        return new Command<Appliance>(async (x) => await NavigateToDetailPageAsync(x));
-        //    }
-        //}
 
         async Task GetDeviceList()
         {

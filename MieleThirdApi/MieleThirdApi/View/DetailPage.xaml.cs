@@ -14,7 +14,7 @@ namespace MieleThirdApi.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DetailPage : ContentPage
 	{
-		public DetailPage (Appliance details)
+		public DetailPage (String details)
 		{
 			InitializeComponent ();
             BindingContext = new DetailPageViewModel(this.Navigation, details);

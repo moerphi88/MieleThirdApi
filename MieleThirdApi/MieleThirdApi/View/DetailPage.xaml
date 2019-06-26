@@ -4,6 +4,9 @@
              x:Class="MieleThirdApi.View.DetailPage">
     <ContentPage.Content>
         <StackLayout>
+            <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="true" IsRunning="true"
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />
             <Label Text="{Binding Details.Ident}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />

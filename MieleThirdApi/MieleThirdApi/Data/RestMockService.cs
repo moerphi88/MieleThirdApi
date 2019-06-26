@@ -8,16 +8,16 @@ namespace MieleThirdApi.Data
 {
     public class RestMockService : IRestApi
     {
-        public async Task<Device> GetDeviceAsync()
+        public async Task<Device> GetDeviceAsync(string fabNr)
         {
-            await Task.Delay(1000);
+            await Task.Delay(3000);
             return new Device() { State = "State1", Ident = "Ident1" };
         }
 
         public async Task<List<Device>> GetDevicesListAsync()
         {
             var devices = new List<Device>();
-            await Task.Delay(1000);
+            await Task.Delay(3000);
 
             devices.Add(new Device() { State = "State1", Ident = "Ident1" });
             devices.Add(new Device() { State = "State2", Ident = "Ident2" });

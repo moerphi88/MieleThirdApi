@@ -10,17 +10,19 @@ namespace MieleThirdApi.ViewModel
 {
     class DetailPageViewModel : BaseViewModel
     {
-        public DetailPageViewModel(INavigation navigation, Appliance details) : base(navigation)
+        public DetailPageViewModel(INavigation navigation, String fabNr) : base(navigation)
         {
-            // UpdateCommand = new Command(async () => await GetDeviceList());
-            if (null != details)
-            {
-                Details.Ident = details.Ident.type.value_localized;
-                Details.State = details.State.status.value_localized;
-            } else
-            {
-                Details = new Model.Device() { Ident = "Schwein", State = "Hunhn" };            
-            }
+            Init(fabNr);
+            System.Diagnostics.Debug.WriteLine("Konstruktor fertig");
+        }
+
+        async void Init(string fabNr)
+        {
+            IsBusy = true;
+            var device = await _restApi.GetDeviceAsync(fabNr);
+            Details = device as Model.Device;
+            IsBusy = false;
+            System.Diagnostics.Debug.WriteLine("Init fertig");
         }
 
         private Model.Device _details;
@@ -37,14 +39,14 @@ namespace MieleThirdApi.ViewModel
             }
         }
 
-        private bool _pollingIsActive = true;
+        //private bool _pollingIsActive = true;
 
-        private Model.Device _device;
-        public Model.Device Dev
-        {
-            get { return _device; }
-            set { _device = value; OnPropertyChanged(); }
-        }
+        //private Model.Device _device;
+        //public Model.Device Dev
+        //{
+        //    get { return _device; }
+        //    set { _device = value; OnPropertyChanged(); }
+        //}
 
         private bool _isBusy = false;
         public bool IsBusy
@@ -66,14 +68,14 @@ namespace MieleThirdApi.ViewModel
         //    });
         //}
 
-        public ICommand UpdateCommand { get; set; }
+        //public ICommand UpdateCommand { get; set; }
 
-        async Task GetDeviceList()
-        {
-            IsBusy = true;
-            var device = await _restApi.GetDeviceAsync();
-            if (device != null) Dev = device; 
-            IsBusy = false;
-        }
+        //async Task GetDeviceList()
+        //{
+        //    IsBusy = true;
+        //    var device = await _restApi.GetDeviceAsync();
+        //    if (device != null) Dev = device; 
+        //    IsBusy = false;
+        //}
     }
 }

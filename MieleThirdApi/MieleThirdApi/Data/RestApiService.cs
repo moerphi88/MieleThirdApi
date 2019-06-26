@@ -24,7 +24,7 @@ namespace MieleThirdApi.Data
             return list;
         }
 
-        public async Task<Device> GetDeviceAsync()
+        public async Task<Device> GetDeviceAsync(string fabNr)
         {
             await Task.Delay(1000);
 
