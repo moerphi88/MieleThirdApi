@@ -18,10 +18,10 @@ namespace MieleThirdApi.ViewModel
             GetDeviceList();
             UpdateCommand = new Command(async () => await GetDeviceList());
             NavigateCommand = new Command(async () => await NavigateToDetailPageAsync());
-        }
-        
+        }       
 
         private bool _pollingIsActive = true;
+        private string _fabNr = "12345678";
 
         private bool _isBusy = false;
         public bool IsBusy
@@ -30,9 +30,7 @@ namespace MieleThirdApi.ViewModel
             set { _isBusy = value; OnPropertyChanged(); }
         }
 
-
-
-        private string _fabNr = "12345678";
+        
 
         private object _itemSelected;
         public object ItemSelected
@@ -109,7 +107,7 @@ namespace MieleThirdApi.ViewModel
             
             var list = new List<DevicelistItemModel>();
             list.Add(new DevicelistItemModel());
-            list.Add(new DevicelistItemModel());
+            list.Add(new DevicelistItemModel() { ProgressBarValue=0 });
             list.Add(new DevicelistItemModel());
 
             //if (devices != null) DeviceList = new ObservableCollection<DevicelistItemModel>(devices);

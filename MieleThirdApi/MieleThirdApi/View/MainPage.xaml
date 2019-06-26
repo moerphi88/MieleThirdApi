@@ -35,7 +35,14 @@
                                         <Label Text="Ende" VerticalTextAlignment="End" HorizontalOptions="End" FontSize="Small" />
                                     </StackLayout>
                                 </StackLayout>
-                                <ProgressBar Progress="{Binding ProgressBarValue}"></ProgressBar>
+                                <ProgressBar Progress="{Binding ProgressBarValue}">
+                                    <ProgressBar.Triggers>
+                                        <Trigger TargetType="ProgressBar"
+                                            Property="Progress" Value="0">
+                                            <Setter Property="IsVisible" Value="true" />
+                                        </Trigger>
+                                    </ProgressBar.Triggers>
+                                </ProgressBar>
                             </StackLayout>
                         </StackLayout>
                     </ViewCell>
