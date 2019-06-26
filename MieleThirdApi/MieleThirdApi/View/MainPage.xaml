@@ -4,15 +4,12 @@
              xmlns:local="clr-namespace:MieleThirdApi"
              x:Class="MieleThirdApi.View.MainPage">
 
-    <StackLayout>
+    <StackLayout HorizontalOptions="CenterAndExpand">
         <!-- Place new controls here -->
         <Label Text="{Binding Titel}" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
         <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="true" IsRunning="true"
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-        <Label Text="{Binding Count}" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
         <ListView ItemsSource="{Binding DeviceList}"
@@ -25,9 +22,21 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                            <Label Text="{Binding Ident}" VerticalTextAlignment="Center" FontSize="Large" />
-                            <Label Text="{Binding State}" VerticalTextAlignment="Center" FontSize="Small" />
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+                            <Image HorizontalOptions="Start" VerticalOptions="Start" Aspect="AspectFill"  Source="icon.png" ></Image>
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout HorizontalOptions="StartAndExpand">
+                                        <Label Text="{Binding Name}" VerticalTextAlignment="Start" FontSize="Large" />
+                                        <Label Text="{Binding Status}" VerticalTextAlignment="Start" FontSize="Small" />
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="EndAndExpand">
+                                        <Label Text="{Binding EndeZeit}" VerticalTextAlignment="End" HorizontalOptions="End" FontSize="Large" />
+                                        <Label Text="Ende" VerticalTextAlignment="End" HorizontalOptions="End" FontSize="Small" />
+                                    </StackLayout>
+                                </StackLayout>
+                                <ProgressBar Progress="{Binding ProgressBarValue}"></ProgressBar>
+                            </StackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using MieleThirdApi.Model;
 using MieleThirdApi.View;
+using System.Collections.Generic;
 
 namespace MieleThirdApi.ViewModel
 {
@@ -13,7 +14,8 @@ namespace MieleThirdApi.ViewModel
     {
         public MainPageViewModel(INavigation navigation) : base(navigation)
         {
-            StartPolling();
+            //StartPolling();
+            GetDeviceList();
             UpdateCommand = new Command(async () => await GetDeviceList());
             NavigateCommand = new Command(async () => await NavigateToDetailPageAsync());
         }
@@ -59,8 +61,8 @@ namespace MieleThirdApi.ViewModel
             }
         }
 
-        private ObservableCollection<Model.Device> _deviceList;
-        public ObservableCollection<Model.Device> DeviceList
+        private ObservableCollection<DevicelistItemModel> _deviceList;
+        public ObservableCollection<DevicelistItemModel> DeviceList
         {
             get { return _deviceList; }
             set { _deviceList = value; OnPropertyChanged(); }
@@ -103,7 +105,15 @@ namespace MieleThirdApi.ViewModel
         {
             IsBusy = true;
             var devices = await _restApi.GetDevicesListAsync();
-            if (devices != null) DeviceList = new ObservableCollection<Model.Device>(devices);
+            //TODO die Konvertierung der Model muss auch noch gemacht werden
+            
+            var list = new List<DevicelistItemModel>();
+            list.Add(new DevicelistItemModel());
+            list.Add(new DevicelistItemModel());
+            list.Add(new DevicelistItemModel());
+
+            //if (devices != null) DeviceList = new ObservableCollection<DevicelistItemModel>(devices);
+            if (devices != null) DeviceList = new ObservableCollection<DevicelistItemModel>(list);
             IsBusy = false;
         }
     }
