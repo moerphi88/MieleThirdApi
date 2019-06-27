@@ -43,8 +43,8 @@ namespace MieleThirdApi.Model
 
         private string GetEndeZeit(List<int> remainingTime)
         {
-            //TODO Berechen die ENdeZeit
-            return DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString();
+            //TODO Berechen die ENdeZeit. Achtung, was ist mit 24h Überschreitungen?
+            return (DateTime.Now.Hour + remainingTime[0]).ToString() + ":" + (DateTime.Now.Minute + remainingTime[1]).ToString();
         }
 
         private double GetProgressBarValue(List<int> remainingTime, List<int> elapsedTime)

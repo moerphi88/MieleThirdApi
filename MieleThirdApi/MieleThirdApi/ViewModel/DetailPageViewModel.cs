@@ -32,8 +32,7 @@ namespace MieleThirdApi.ViewModel
         async void Init(string fabNr)
         {
             IsBusy = true;
-            await Task.Delay(10000);
-            //var device = await _geraeteManager.GetDeviceAsync(fabNr);
+            var device = await _geraeteManager.GetDeviceAsync(fabNr);
             //Details = device as Model.Device;
             Details = new Model.Device() { Ident = "Hu", State = "Fu" };
             IsBusy = false;
@@ -56,13 +55,6 @@ namespace MieleThirdApi.ViewModel
         }
 
         //private bool _pollingIsActive = true;
-
-        //private Model.Device _device;
-        //public Model.Device Dev
-        //{
-        //    get { return _device; }
-        //    set { _device = value; OnPropertyChanged(); }
-        //}
 
         private bool _isBusy = false;
         public bool IsBusy

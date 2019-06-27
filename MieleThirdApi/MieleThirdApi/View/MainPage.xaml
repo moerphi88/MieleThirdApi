@@ -25,7 +25,7 @@
                         <StackLayout HeightRequest="100" Orientation="Horizontal" VerticalOptions="Start" >
                             <Image HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFill"  Source="icon.png" ></Image>
                             <StackLayout>
-                                <StackLayout Orientation="Horizontal" WidthRequest="350">
+                                <StackLayout Orientation="Horizontal" WidthRequest="300">
                                     <StackLayout HorizontalOptions="StartAndExpand">
                                         <Label Text="{Binding Name}" VerticalTextAlignment="Start" FontSize="Large" />
                                         <Label Text="{Binding Status}" VerticalTextAlignment="Start" FontSize="Small" />
@@ -45,7 +45,7 @@
                                         </Label>
                                     </StackLayout>
                                 </StackLayout>
-                                <ProgressBar Progress="{Binding ProgressBarValue}" WidthRequest="350">
+                                <ProgressBar Progress="{Binding ProgressBarValue}" WidthRequest="300">
                                     <ProgressBar.Triggers>
                                         <Trigger TargetType="ProgressBar"
                                             Property="Progress" Value="0">

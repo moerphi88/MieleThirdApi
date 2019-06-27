@@ -14,7 +14,7 @@ namespace MieleThirdApi.ViewModel
     {
         public MainPageViewModel(INavigation navigation) : base(navigation)
         {
-            //StartPolling();
+            StartPolling();
             GetDeviceList();
             UpdateCommand = new Command(async () => await GetDeviceList());
             NavigateCommand = new Command(async () => await NavigateToDetailPageAsync());
@@ -105,11 +105,6 @@ namespace MieleThirdApi.ViewModel
             var devicelistItems = await _geraeteManager.GetDevicelistItemsAsync();
             //TODO die Konvertierung der Model muss auch noch gemacht werden
             
-            //var list = new List<DevicelistItem>();
-            //list.Add(new DevicelistItem());
-            //list.Add(new DevicelistItem() { ProgressBarValue=0 });
-            //list.Add(new DevicelistItem() { EndeZeit = string.Empty });
-
             if (devicelistItems != null) DeviceList = new ObservableCollection<DevicelistItem>(devicelistItems);
             //if (devices != null) DeviceList = new ObservableCollection<DevicelistItem>(list);
             IsBusy = false;
