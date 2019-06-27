@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MieleThirdApi.Data
 {
-    public interface IRestApi
+    public interface IGeraeteManager
     {
-        Task<List<Appliance>> GetDevicesListAsync();
+        Task<List<DevicelistItem>> GetDevicelistItemsAsync();
         Task<Appliance> GetDeviceAsync(string fabNr);
     }
 }

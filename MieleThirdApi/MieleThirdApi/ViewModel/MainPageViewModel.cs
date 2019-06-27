@@ -59,8 +59,8 @@ namespace MieleThirdApi.ViewModel
             }
         }
 
-        private ObservableCollection<DevicelistItemModel> _deviceList;
-        public ObservableCollection<DevicelistItemModel> DeviceList
+        private ObservableCollection<DevicelistItem> _deviceList;
+        public ObservableCollection<DevicelistItem> DeviceList
         {
             get { return _deviceList; }
             set { _deviceList = value; OnPropertyChanged(); }
@@ -102,16 +102,16 @@ namespace MieleThirdApi.ViewModel
         async Task GetDeviceList()
         {
             IsBusy = true;
-            var devices = await _restApi.GetDevicesListAsync();
+            var devicelistItems = await _geraeteManager.GetDevicelistItemsAsync();
             //TODO die Konvertierung der Model muss auch noch gemacht werden
             
-            var list = new List<DevicelistItemModel>();
-            list.Add(new DevicelistItemModel());
-            list.Add(new DevicelistItemModel() { ProgressBarValue=0 });
-            list.Add(new DevicelistItemModel() { EndeZeit = string.Empty });
+            //var list = new List<DevicelistItem>();
+            //list.Add(new DevicelistItem());
+            //list.Add(new DevicelistItem() { ProgressBarValue=0 });
+            //list.Add(new DevicelistItem() { EndeZeit = string.Empty });
 
-            //if (devices != null) DeviceList = new ObservableCollection<DevicelistItemModel>(devices);
-            if (devices != null) DeviceList = new ObservableCollection<DevicelistItemModel>(list);
+            if (devicelistItems != null) DeviceList = new ObservableCollection<DevicelistItem>(devicelistItems);
+            //if (devices != null) DeviceList = new ObservableCollection<DevicelistItem>(list);
             IsBusy = false;
         }
     }

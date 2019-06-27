@@ -19,8 +19,9 @@ namespace MieleThirdApi.ViewModel
         async void Init(string fabNr)
         {
             IsBusy = true;
-            var device = await _restApi.GetDeviceAsync(fabNr);
-            Details = device as Model.Device;
+            var device = await _geraeteManager.GetDeviceAsync(fabNr);
+            //Details = device as Model.Device;
+            Details = new Model.Device() { Ident = "Hu", State = "Fu" };
             IsBusy = false;
             System.Diagnostics.Debug.WriteLine("Init fertig");
         }

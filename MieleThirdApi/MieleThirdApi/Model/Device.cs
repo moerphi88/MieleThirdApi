@@ -218,7 +218,7 @@ namespace MieleThirdApi.Model
         public bool signalDoor { get; set; }
         public RemoteEnable remoteEnable { get; set; }
         public int light { get; set; }
-        public List<object> elapsedTime { get; set; }
+        public List<int> elapsedTime { get; set; }
         public DryingStep dryingStep { get; set; }
         public VentilationStep ventilationStep { get; set; }
     }
