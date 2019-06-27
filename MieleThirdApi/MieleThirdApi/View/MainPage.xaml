@@ -31,15 +31,25 @@
                                         <Label Text="{Binding Status}" VerticalTextAlignment="Start" FontSize="Small" />
                                     </StackLayout>
                                     <StackLayout HorizontalOptions="EndAndExpand">
-                                        <Label Text="{Binding EndeZeit}" VerticalTextAlignment="End" HorizontalOptions="End" FontSize="Large" />
-                                        <Label Text="Ende" VerticalTextAlignment="End" HorizontalOptions="End" FontSize="Small" />
+                                        <Label x:Name="lblEndeZeit"  Text="{Binding EndeZeit}" VerticalTextAlignment="End" HorizontalOptions="End" FontSize="Large" />
+                                        <Label Text="Ende" VerticalTextAlignment="End" HorizontalOptions="End" FontSize="Small" >
+                                            <Label.Triggers>
+                                                <!--https://docs.microsoft.com/de-de/xamarin/xamarin-forms/app-fundamentals/triggers-->
+                                                <DataTrigger TargetType="Label"
+                                                 Binding="{Binding Source={x:Reference lblEndeZeit},
+                                                                   Path=Text.Length}"
+                                                 Value="0">
+                                                 <Setter Property="IsVisible" Value="False" />
+                                                 </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
                                     </StackLayout>
                                 </StackLayout>
                                 <ProgressBar Progress="{Binding ProgressBarValue}">
                                     <ProgressBar.Triggers>
                                         <Trigger TargetType="ProgressBar"
                                             Property="Progress" Value="0">
-                                            <Setter Property="IsVisible" Value="true" />
+                                            <Setter Property="IsVisible" Value="false" />
                                         </Trigger>
                                     </ProgressBar.Triggers>
                                 </ProgressBar>

@@ -108,7 +108,7 @@ namespace MieleThirdApi.ViewModel
             var list = new List<DevicelistItemModel>();
             list.Add(new DevicelistItemModel());
             list.Add(new DevicelistItemModel() { ProgressBarValue=0 });
-            list.Add(new DevicelistItemModel());
+            list.Add(new DevicelistItemModel() { EndeZeit = string.Empty });
 
             //if (devices != null) DeviceList = new ObservableCollection<DevicelistItemModel>(devices);
             if (devices != null) DeviceList = new ObservableCollection<DevicelistItemModel>(list);
