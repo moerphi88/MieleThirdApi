@@ -5,25 +5,40 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MieleThirdApi.Model;
+using System.Diagnostics;
 
 namespace MieleThirdApi.ViewModel
 {
     class DetailPageViewModel : BaseViewModel
     {
+        Stopwatch watch = new Stopwatch();
         public DetailPageViewModel(INavigation navigation, String fabNr) : base(navigation)
         {
+            watch.Start();
             Init(fabNr);
-            System.Diagnostics.Debug.WriteLine("Konstruktor fertig");
+            
+            BackNavigationCommand =  new Command(async () => await NavigateBack());
+            
+            System.Diagnostics.Debug.WriteLine($"Konstruktor fertig nach {watch.ElapsedMilliseconds} ms");
+
+        }
+
+        async Task NavigateBack()
+        {
+            System.Diagnostics.Debug.WriteLine("Button Klick");
+            await _navigation.PopModalAsync();
         }
 
         async void Init(string fabNr)
         {
             IsBusy = true;
-            var device = await _geraeteManager.GetDeviceAsync(fabNr);
+            await Task.Delay(10000);
+            //var device = await _geraeteManager.GetDeviceAsync(fabNr);
             //Details = device as Model.Device;
             Details = new Model.Device() { Ident = "Hu", State = "Fu" };
             IsBusy = false;
-            System.Diagnostics.Debug.WriteLine("Init fertig");
+            watch.Stop();
+            System.Diagnostics.Debug.WriteLine($"Init fertig nach {watch.ElapsedMilliseconds} ms");
         }
 
         private Model.Device _details;
@@ -69,7 +84,7 @@ namespace MieleThirdApi.ViewModel
         //    });
         //}
 
-        //public ICommand UpdateCommand { get; set; }
+        public ICommand BackNavigationCommand { get; }
 
         //async Task GetDeviceList()
         //{

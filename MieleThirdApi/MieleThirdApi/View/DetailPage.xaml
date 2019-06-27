@@ -4,9 +4,14 @@
              x:Class="MieleThirdApi.View.DetailPage">
     <ContentPage.Content>
         <StackLayout>
-            <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="true" IsRunning="true"
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+           <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="true" IsRunning="true"
+           HeightRequest="50" />
+            <Button Text="Back" Command="{Binding BackNavigationCommand}">
+                <Button.IsVisible>
+                    <OnPlatform Android="false" iOS="false" UWP="true"></OnPlatform>
+                    <!--OnIdiom is used for Tablet, Phone... -->
+                </Button.IsVisible>
+            </Button> 
             <Label Text="{Binding Details.Ident}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />

@@ -38,9 +38,9 @@ namespace MieleThirdApi.Data
                 list.Add(new DevicelistItem(a));
             }
             //list.Add(new DevicelistItem());
-            //list.Add(new DevicelistItem() { ProgressBarValue = 0 });
-            //list.Add(new DevicelistItem() { EndeZeit = string.Empty });
-            //list.Add(new DevicelistItem() { ProgressBarValue=.9, EndeZeit = string.Empty, Status = "Running" });
+            list.Add(new DevicelistItem() { ProgressBarValue = 0 });
+            list.Add(new DevicelistItem() { EndeZeit = string.Empty });
+            list.Add(new DevicelistItem() { ProgressBarValue=.9, EndeZeit = string.Empty, Status = "Running" });
 
             return list;
         }

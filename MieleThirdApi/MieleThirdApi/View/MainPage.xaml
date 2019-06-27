@@ -22,17 +22,17 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
-                            <Image HorizontalOptions="Start" VerticalOptions="Start" Aspect="AspectFill"  Source="icon.png" ></Image>
+                        <StackLayout HeightRequest="100" Orientation="Horizontal" VerticalOptions="Start" >
+                            <Image HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFill"  Source="icon.png" ></Image>
                             <StackLayout>
-                                <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Horizontal" WidthRequest="350">
                                     <StackLayout HorizontalOptions="StartAndExpand">
                                         <Label Text="{Binding Name}" VerticalTextAlignment="Start" FontSize="Large" />
                                         <Label Text="{Binding Status}" VerticalTextAlignment="Start" FontSize="Small" />
                                     </StackLayout>
                                     <StackLayout HorizontalOptions="EndAndExpand">
-                                        <Label x:Name="lblEndeZeit"  Text="{Binding EndeZeit}" VerticalTextAlignment="End" HorizontalOptions="End" FontSize="Large" />
-                                        <Label Text="Ende" VerticalTextAlignment="End" HorizontalOptions="End" FontSize="Small" >
+                                        <Label x:Name="lblEndeZeit"  Text="{Binding EndeZeit}" VerticalTextAlignment="End" HorizontalOptions="EndAndExpand" FontSize="Large" />
+                                        <Label Text="Ende" VerticalTextAlignment="End" HorizontalOptions="EndAndExpand" FontSize="Small" >
                                             <Label.Triggers>
                                                 <!--https://docs.microsoft.com/de-de/xamarin/xamarin-forms/app-fundamentals/triggers-->
                                                 <DataTrigger TargetType="Label"
@@ -45,7 +45,7 @@
                                         </Label>
                                     </StackLayout>
                                 </StackLayout>
-                                <ProgressBar Progress="{Binding ProgressBarValue}">
+                                <ProgressBar Progress="{Binding ProgressBarValue}" WidthRequest="350">
                                     <ProgressBar.Triggers>
                                         <Trigger TargetType="ProgressBar"
                                             Property="Progress" Value="0">
