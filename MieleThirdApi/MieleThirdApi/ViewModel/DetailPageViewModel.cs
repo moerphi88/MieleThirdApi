@@ -23,6 +23,11 @@ namespace MieleThirdApi.ViewModel
 
         }
 
+        public DetailPageViewModel(INavigation navigation, Model.Device d) : base(navigation)
+        {
+            Details = d;
+        }
+
         async Task NavigateBack()
         {
             System.Diagnostics.Debug.WriteLine("Button Klick");

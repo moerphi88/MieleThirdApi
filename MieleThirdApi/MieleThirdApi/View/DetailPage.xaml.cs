@@ -19,5 +19,22 @@ namespace MieleThirdApi.View
 			InitializeComponent ();
             BindingContext = new DetailPageViewModel(this.Navigation, details);
 		}
+
+        public DetailPage()
+        {
+            https://docs.microsoft.com/en-us/xamarin/xamarin-forms/xaml/xaml-previewer/?pivots=windows
+            InitializeComponent();
+            if (DesignMode.IsDesignModeEnabled)
+            {
+                var vm = new DetailPageViewModel(this.Navigation, new Model.Device() { Ident = "Test", State = "Hut" });
+                vm.IsBusy = true;
+                BindingContext = vm;
+            }
+
+            if (!DesignMode.IsDesignModeEnabled)
+            {
+                // Don't run in the Previewer  
+            }
+            }
 	}
 }
