@@ -10,11 +10,9 @@ namespace MieleThirdApi.Data
     {
         private IRestApi _restApi;
 
-        public GeraeteManager()
+        public GeraeteManager(IRestApi restApi)
         {
-            //Hier kann später die Compiler MOCK Abfrage rein
-            //_restApi = new RestMockService();
-            _restApi = new RestApiService();
+            _restApi = restApi;
         }
 
         public Task<Appliance> GetDeviceAsync(string fabNr)

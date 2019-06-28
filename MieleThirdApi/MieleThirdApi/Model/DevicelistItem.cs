@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MieleThirdApi.Data;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,6 +13,8 @@ namespace MieleThirdApi.Model
         public string EndeZeit { get; set; }
         public double ProgressBarValue { get; set; }
 
+        private IDateTimeHelper _dateTimeHelper;
+
         public DevicelistItem()
         {
             IconUri = "icon.png";
@@ -21,8 +24,11 @@ namespace MieleThirdApi.Model
             ProgressBarValue = .4;
         }
 
-        public DevicelistItem(Appliance appliance)
+        public DevicelistItem(Appliance appliance, IDateTimeHelper dateTimeHelper = null)
         {
+            if (dateTimeHelper == null) _dateTimeHelper = new DateTimeHelper();
+            else _dateTimeHelper = dateTimeHelper;
+
             IconUri = GetIconUri(appliance.Ident.type.value_raw);
             Name = GetApplianceName(appliance.Ident.deviceName, appliance.Ident.type.value_localized);
             Status = appliance.State.status.value_localized;
@@ -32,8 +38,6 @@ namespace MieleThirdApi.Model
 
         private string GetIconUri(int typeRaw)
         {
-            if(typeRaw == 1)
-                return "icon1.png";
             return "icon.png";
         }
 
@@ -46,7 +50,18 @@ namespace MieleThirdApi.Model
         private string GetEndeZeit(List<int> remainingTime)
         {
             //TODO Berechen die ENdeZeit. Achtung, was ist mit 24h Überschreitungen?
-            return (DateTime.Now.Hour + remainingTime[0]).ToString() + ":" + (DateTime.Now.Minute + remainingTime[1]).ToString();
+            var hours = _dateTimeHelper.Now().Hour + remainingTime[0];
+            var minutes = _dateTimeHelper.Now().Minute + remainingTime[1];
+            if(minutes >= 60) //cannot be ore than 59+59=118
+            {
+                hours = hours + 1;
+                minutes = minutes - 60;
+            }
+            if(hours >= 24)
+            {
+                hours = hours - 24;
+            }
+            return hours.ToString() + ":" + minutes.ToString();
         }
 
         private double GetProgressBarValue(List<int> remainingTime, List<int> elapsedTime)
