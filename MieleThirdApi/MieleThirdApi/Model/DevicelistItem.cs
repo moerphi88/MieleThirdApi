@@ -32,6 +32,8 @@ namespace MieleThirdApi.Model
 
         private string GetIconUri(int typeRaw)
         {
+            if(typeRaw == 1)
+                return "icon1.png";
             return "icon.png";
         }
 

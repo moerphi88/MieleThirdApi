@@ -9,13 +9,13 @@ namespace MieleThirdApi.Data
     //TODO diese Klasse muss ich noch komplett neu mocken! oO
     public class RestMockService : IRestApi
     {
-        public async Task<Appliance> GetDeviceAsync(string fabNr)
+        public async Task<Appliance> GetApplianceAsync(string fabNr)
         {
             await Task.Delay(3000);
             return new Appliance();
         }
 
-        public async Task<List<Appliance>> GetDevicesListAsync()
+        public async Task<List<Appliance>> GetApplincesListAsync()
         {
             var appliances = new List<Appliance>();
             await Task.Delay(3000);
