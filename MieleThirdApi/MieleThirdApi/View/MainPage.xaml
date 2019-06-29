@@ -2,14 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:MieleThirdApi"
-             x:Class="MieleThirdApi.View.MainPage">
+             x:Class="MieleThirdApi.View.MainPage"
+             BackgroundColor="DarkGray">
 
     <StackLayout HorizontalOptions="CenterAndExpand">
         <!-- Place new controls here -->
         <Label Text="{Binding Titel}" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
-        <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="true" IsRunning="true"
+        <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="true" IsRunning="true" Color="Orange"
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
         <ListView ItemsSource="{Binding DeviceList}"
@@ -45,7 +46,7 @@
                                         </Label>
                                     </StackLayout>
                                 </StackLayout>
-                                <ProgressBar Progress="{Binding ProgressBarValue}" WidthRequest="300">
+                                <ProgressBar Progress="{Binding ProgressBarValue}" WidthRequest="300" ProgressColor="Orange">
                                     <ProgressBar.Triggers>
                                         <Trigger TargetType="ProgressBar"
                                             Property="Progress" Value="0">

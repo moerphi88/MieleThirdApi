@@ -14,7 +14,7 @@ namespace MieleThirdApi.ViewModel
     {
         public MainPageViewModel(INavigation navigation) : base(navigation)
         {
-            StartPolling();
+            //StartPolling();
             GetDeviceList();
             UpdateCommand = new Command(async () => await GetDeviceList());
             NavigateCommand = new Command(async () => await NavigateToDetailPageAsync());

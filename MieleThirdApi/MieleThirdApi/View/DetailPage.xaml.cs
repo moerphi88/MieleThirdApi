@@ -35,6 +35,6 @@ namespace MieleThirdApi.View
             {
                 // Don't run in the Previewer  
             }
-            }
+        }
 	}
 }
