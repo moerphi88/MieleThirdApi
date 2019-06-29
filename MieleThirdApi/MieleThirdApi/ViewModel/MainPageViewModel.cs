@@ -1,4 +1,4 @@
-﻿using MieleThirdApi.ViewModels;
+﻿using MieleThirdApi.ViewModel;
 using System;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;

@@ -1,4 +1,4 @@
-﻿using MieleThirdApi.ViewModels;
+﻿using MieleThirdApi.ViewModel;
 using System;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
@@ -23,7 +23,7 @@ namespace MieleThirdApi.ViewModel
 
         }
 
-        public DetailPageViewModel(INavigation navigation, Model.Device d) : base(navigation)
+        public DetailPageViewModel(INavigation navigation, DevicelistItem d) : base(navigation)
         {
             Details = d;
         }
@@ -39,14 +39,14 @@ namespace MieleThirdApi.ViewModel
             IsBusy = true;
             var device = await _geraeteManager.GetDeviceAsync(fabNr);
             //Details = device as Model.Device;
-            Details = new Model.Device() { Ident = "Hu", State = "Fu" };
+            Details = new DevicelistItem { Name = "Hu", EndeZeit = "Fu" };
             IsBusy = false;
             watch.Stop();
             System.Diagnostics.Debug.WriteLine($"Init fertig nach {watch.ElapsedMilliseconds} ms");
         }
 
-        private Model.Device _details;
-        public Model.Device Details
+        private DevicelistItem _details;
+        public DevicelistItem Details
         {
             get
             {

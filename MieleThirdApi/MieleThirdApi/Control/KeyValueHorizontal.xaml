@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MieleThirdApi.Control.KeyValueHorizontal">
+  <ContentView.Content>
+        <AbsoluteLayout>
+            <Label x:Name="keytext" Text="LLLLLLLLLLLL" Margin="20,0,0,0"  AbsoluteLayout.LayoutBounds="0,0,150,20" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+            <Label x:Name="valuetext" Text="LLLLLLLLLLLL" Margin="0,0,20,0" HorizontalOptions="End" AbsoluteLayout.LayoutBounds="1,0,150,20" AbsoluteLayout.LayoutFlags="PositionProportional"></Label>
+        </AbsoluteLayout>
+  </ContentView.Content>
+</ContentView>

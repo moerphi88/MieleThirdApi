@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MieleThirdApi.View.DetailPage">
+             x:Class="MieleThirdApi.View.DetailPage"
+             xmlns:local="clr-namespace:MieleThirdApi"
+             xmlns:custom="clr-namespace:MieleThirdApi.Control">
     <ContentPage.Content>
         <StackLayout>
            <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="true" IsRunning="true"
@@ -11,13 +13,21 @@
                     <OnPlatform Android="false" iOS="false" UWP="true"></OnPlatform>
                     <!--OnIdiom is used for Tablet, Phone... -->
                 </Button.IsVisible>
-            </Button> 
-            <Label Text="{Binding Details.Ident}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Label Text="{Binding Details.State}"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            </Button>
+            <custom:KeyValueHorizontal
+                KeyText ="{Binding Details.Name}"
+                ValueText ="{Binding Details.EndeZeit}">
+            </custom:KeyValueHorizontal>
+            <BoxView Margin="10,0,0,0" BackgroundColor="Gray" HeightRequest="1" HorizontalOptions="FillAndExpand"></BoxView>
+            <custom:KeyValueHorizontal
+                KeyText ="{Binding Details.Name}"
+                ValueText ="{Binding Details.EndeZeit}">
+            </custom:KeyValueHorizontal>
+            <BoxView Margin="10,0,0,0" BackgroundColor="Gray" HeightRequest="1" HorizontalOptions="FillAndExpand"></BoxView>
+            <custom:KeyValueHorizontal
+                KeyText ="{Binding Details.Name}"
+                ValueText ="{Binding Details.EndeZeit}">
+            </custom:KeyValueHorizontal>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

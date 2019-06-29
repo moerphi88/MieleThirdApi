@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
-namespace MieleThirdApi.ViewModels
+namespace MieleThirdApi.ViewModel
 {
     class BaseViewModel : INotifyPropertyChanged
     {
