@@ -61,14 +61,36 @@ namespace MieleThirdApi.Model
             {
                 hours = hours - 24;
             }
-            return hours.ToString() + ":" + minutes.ToString();
+            //https://docs.microsoft.com/de-de/dotnet/standard/base-types/how-to-pad-a-number-with-leading-zeros
+            return hours.ToString("D2") + ":" + minutes.ToString("D2");
         }
 
         private double GetProgressBarValue(List<int> remainingTime, List<int> elapsedTime)
         {
-            //Calculate progressBarValue
-            Random random = new Random();
-            return random.NextDouble();             
+            double elapsedMinutes;
+            double remainingMinutes;
+
+            //Ich könnte hier auch mit einer Exception arbeiten, die dann gecatched wird und in dem Fall wird .0 returned
+            if (elapsedTime?.Count == 2)
+            {
+                elapsedMinutes = elapsedTime[0]*60 + elapsedTime[1];
+            } else
+            {
+                return .0;
+            }
+
+            if (remainingTime?.Count == 2)
+            {
+                remainingMinutes = remainingTime[0]*60 + remainingTime[1];
+            }
+            else
+            {
+                return .0;
+            }
+
+            var totalMinutes = remainingMinutes + elapsedMinutes;
+
+            return (elapsedMinutes / totalMinutes);      
         }
     }
 }
