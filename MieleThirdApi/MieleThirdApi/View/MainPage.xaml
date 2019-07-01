@@ -6,10 +6,6 @@
              BackgroundColor="DarkGray">
 
     <StackLayout HorizontalOptions="CenterAndExpand">
-        <!-- Place new controls here -->
-        <Label Text="{Binding Titel}" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
         <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="true" IsRunning="true" Color="Orange"
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />

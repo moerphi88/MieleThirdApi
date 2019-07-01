@@ -27,7 +27,7 @@ namespace MieleThirdApi.View
             if (DesignMode.IsDesignModeEnabled)
             {
                 var vm = new DetailPageViewModel(this.Navigation, new DevicelistItem() { Name = "Test", EndeZeit = "Hut" });
-                vm.IsBusy = true;
+                vm.IsBusy = false;
                 BindingContext = vm;
             }
 
