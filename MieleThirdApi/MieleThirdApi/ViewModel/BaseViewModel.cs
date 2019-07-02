@@ -19,7 +19,8 @@ namespace MieleThirdApi.ViewModel
 
             //Hier kann später die Compiler MOCK Abfrage rein
             //_restApi = new RestMockService();
-            _restApi = new RestApiService();
+            //_restApi = new RestApiService();
+            _restApi = new RestRealService();
 
             _geraeteManager = new GeraeteManager(_restApi);
         }

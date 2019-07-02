@@ -199,7 +199,8 @@ namespace MieleThirdApi.Model
 
     public class VentilationStep
     {
-        public int value_raw { get; set; }
+        // https://stackoverflow.com/questions/31813055/how-to-handle-null-empty-values-in-jsonconvert-deserializeobject Anstatt es auszukomentieren
+        public object value_raw { get; set; }
         public string value_localized { get; set; }
         public string key_localized { get; set; }
     }
@@ -211,7 +212,7 @@ namespace MieleThirdApi.Model
         public ProgramPhase programPhase { get; set; }
         public List<int> remainingTime { get; set; }
         public List<int> startTime { get; set; }
-        public TargetTemperature targetTemperature { get; set; }
+        public List<TargetTemperature> targetTemperature { get; set; }
         public List<Temperature> temperature { get; set; }
         public bool signalInfo { get; set; }
         public bool signalFailure { get; set; }
