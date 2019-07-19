@@ -24,6 +24,7 @@
                 KeyText ="{Binding Details.Name}"
                 ValueText ="{Binding Details.EndeZeit}">
             </custom:KeyValueHorizontal>
+            <custom:FaceliftCell HeightRequest="66"></custom:FaceliftCell>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
