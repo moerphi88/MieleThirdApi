@@ -12,7 +12,7 @@ namespace MieleThirdApi.ViewModel
     class DetailPageViewModel : BaseViewModel
     {
         Stopwatch watch = new Stopwatch();
-        public DetailPageViewModel(INavigation navigation, String fabNr) : base(navigation)
+        public DetailPageViewModel(INavigation navigation, String fabNr) : base(navigation, null)
         {
             watch.Start();
             Init(fabNr);
@@ -23,7 +23,7 @@ namespace MieleThirdApi.ViewModel
 
         }
 
-        public DetailPageViewModel(INavigation navigation, DevicelistItem d) : base(navigation)
+        public DetailPageViewModel(INavigation navigation, DevicelistItem d) : base(navigation, null)
         {
             Details = d;
         }

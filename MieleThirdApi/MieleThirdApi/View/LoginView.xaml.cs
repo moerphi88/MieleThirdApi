@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MieleThirdApi.Data;
+using MieleThirdApi.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,10 +19,10 @@ namespace MieleThirdApi.View
             InitializeComponent();
         }
 
-        public LoginView()
+        public LoginView(ILoginManager loginManager)
         {
             InitializeComponent();
-
+            BindingContext = new LoginViewModel(this.Navigation, loginManager);
         }
     }
 }

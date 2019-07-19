@@ -12,7 +12,7 @@ namespace MieleThirdApi.ViewModel
 {
     class MainPageViewModel : BaseViewModel
     {
-        public MainPageViewModel(INavigation navigation) : base(navigation)
+        public MainPageViewModel(INavigation navigation) : base(navigation, null)
         {
             //StartPolling();
             GetDeviceList();

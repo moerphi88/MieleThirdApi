@@ -1,4 +1,5 @@
 ﻿using MieleThirdApi.Data;
+using MieleThirdApi.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,7 +32,7 @@ namespace MieleThirdApi.ViewModel
 
         protected virtual async Task OnLoggedOut(object sender, EventArgs e)
         {
-            await _navigation.PushModalAsync(new LoginPage(_navigation, _loginManager));
+            await _navigation.PushModalAsync(new LoginView(_loginManager));
         }
 
         #region INotifyPropertyChanges Handler
