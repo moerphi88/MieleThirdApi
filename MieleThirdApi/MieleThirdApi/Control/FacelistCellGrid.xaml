@@ -33,7 +33,7 @@
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                     Margin="16,21,16,21"
-                    Source=""
+                    Source="ic_program_generic_default"
                     />
             </StackLayout>
             <StackLayout
@@ -43,14 +43,14 @@
                 Grid.Column="1"
                 Grid.ColumnSpan="2">
                 <Label              
-                    Text=""
+                    Text="Hund"
                     x:Name="LableText"
                     Margin="0,15,0,0"
                     FontSize="13"
                     TextColor="#A1A1A1"
                     HeightRequest="15"/>
                 <Label 
-                    Text=""
+                    Text="Katze"
                     x:Name="valueText"
                     Margin="0,2,0,13"
                     TextColor="#FFFFFF"
@@ -68,7 +68,7 @@
                     HeightRequest="24"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    Source="ic_basic_navigate_forward_active.png"
+                    Source="ic_basic_navigate_forward_active_24pt"
                     Margin="16,21,16,21"
                     />
 
