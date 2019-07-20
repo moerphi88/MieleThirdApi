@@ -26,11 +26,20 @@ namespace MieleThirdApi.Data
             else return false;
         }
 
-        public async Task<bool> LoginAsync()
+        public async Task<bool> LoginAsync(Credential credential)
         {
+            var returnValue = false;
+            if(!String.IsNullOrEmpty(credential?.User) && !String.IsNullOrEmpty(credential?.Password))
+            {
+                if (credential.User.Equals("Hund") && credential.Password.Equals("Katze"))
+                {
+                    returnValue = true;
+                }
+            }
             var tokenResponse = "{\"access_token\":\"DE_4ffe8e9614659ee918d54cc99cb356cb\",\"refresh_token\":\"DE_1e1f3e0b84e7b01d3e03586031d83992\",\"token_type\":\"Bearer\",\"expires_in\":2592000}";
             _token = await Task.Run(() => JsonConvert.DeserializeObject<Token>(tokenResponse));
-            return true;
+            await Task.Delay(3000);
+            return returnValue; 
         }
 
         public async Task<bool> Logout()

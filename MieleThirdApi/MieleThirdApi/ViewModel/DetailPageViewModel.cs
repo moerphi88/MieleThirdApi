@@ -78,12 +78,7 @@ namespace MieleThirdApi.ViewModel
 
         //private bool _pollingIsActive = true;
 
-        private bool _isBusy = false;
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set { _isBusy = value; OnPropertyChanged(); }
-        }
+
 
         // https://xamarinhelp.com/xamarin-forms-timer/
         //void StartPolling()

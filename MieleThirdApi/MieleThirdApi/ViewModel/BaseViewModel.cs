@@ -15,7 +15,13 @@ namespace MieleThirdApi.ViewModel
         protected INavigation _navigation { get; }
         protected static IRestApi _restApi { get; private set; }
         protected static IGeraeteManager _geraeteManager { get; private set; }
-        
+
+        private bool _isBusy = false;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { _isBusy = value; OnPropertyChanged(); }
+        }
 
         protected BaseViewModel(INavigation navigation)
         { 

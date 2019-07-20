@@ -8,34 +8,58 @@
     <ContentPage.Content>
         <ScrollView            
         BackgroundColor="#1F2328">
-        <StackLayout
-            VerticalOptions="Center"
-            Margin="20"
-            Spacing="20">
-            <Label 
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout 
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    VerticalOptions="Center"
+                    Margin="20"
+                    Spacing="20">
+                    <Label 
                 Text="Bitte log dich mit deinem myMiele Account für Deutschland ein" 
                 HorizontalOptions="CenterAndExpand"
                 HorizontalTextAlignment="Center"
                 TextColor="#A1A1A1"
                 FontSize="18"/>
-            <Entry 
+                    <Entry 
                 HorizontalOptions="Fill"
                 Placeholder="Benutzername"
                 Text="{Binding Credential.User}"
                 TextColor="#A1A1A1"
                 PlaceholderColor="#A1A1A1"/>
-            <Entry 
+                    <Entry 
                 HorizontalOptions="Fill"
                 Placeholder="Passwort"
                 Text="{Binding Credential.Password}"
                 TextColor="#A1A1A1"
                 PlaceholderColor="#A1A1A1"/>
-            <Button
+                    <Button
                 Text="Login"
                 TextColor="#A1A1A1"
                 BackgroundColor="#1F2328"
                 Command="{Binding LoginCommand}"/>
-            </StackLayout>
+                </StackLayout>
+                <BoxView
+                    HorizontalOptions="Fill"
+                    BackgroundColor="Gray"
+                    Opacity="0.8"
+                    IsVisible="{Binding IsBusy}"/>
+                <ActivityIndicator
+                    IsVisible="{Binding IsBusy}"
+                    IsEnabled="True"
+                    IsRunning="True"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    HorizontalOptions="Center"
+                    Color="Yellow"/>
+            </Grid>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
