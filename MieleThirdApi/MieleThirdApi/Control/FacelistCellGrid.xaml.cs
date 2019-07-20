@@ -56,26 +56,26 @@ namespace MieleThirdApi.Control
             control.valueText.Text = newValue.ToString();
         }
 
-        // BoxColor
-        public static readonly BindableProperty BoxColorProperty = BindableProperty.Create(
-                                                         propertyName: "BoxColor",
-                                                         returnType: typeof(Color),
-                                                         declaringType: typeof(FaceliftCellGrid),
-                                                         defaultValue: Color.AliceBlue,
-                                                         defaultBindingMode: BindingMode.TwoWay,
-                                                         propertyChanged: BoxColorPropertyChanged);
+        //// BoxColor
+        //public static readonly BindableProperty BoxColorProperty = BindableProperty.Create(
+        //                                                 propertyName: "BoxColor",
+        //                                                 returnType: typeof(Color),
+        //                                                 declaringType: typeof(FaceliftCellGrid),
+        //                                                 defaultValue: Color.AliceBlue,
+        //                                                 defaultBindingMode: BindingMode.TwoWay,
+        //                                                 propertyChanged: BoxColorPropertyChanged);
 
-        public Color BoxColor
-        {
-            get { return (Color)base.GetValue(BoxColorProperty); }
-            set { base.SetValue(BoxColorProperty, value); }
-        }
+        //public Color BoxColor
+        //{
+        //    get { return (Color)base.GetValue(BoxColorProperty); }
+        //    set { base.SetValue(BoxColorProperty, value); }
+        //}
 
-        private static void BoxColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-        {
-            var control = (FaceliftCellGrid)bindable;
-            control.box.BackgroundColor = (Color)newValue;
-        }
+        //private static void BoxColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        //{
+        //    var control = (FaceliftCellGrid)bindable;
+        //    control.box.BackgroundColor = (Color)newValue;
+        //}
 
         // Arrow Visibilty
         public static readonly BindableProperty ArrowIsVisibleProperty = BindableProperty.Create(

@@ -26,14 +26,13 @@
                 Grid.RowSpan="2"
                 Grid.Column="0"
                 VerticalOptions="Center">
-                <BoxView
-                    x:Name="box"
-                    BackgroundColor="White"
+                <Image
                     WidthRequest="24"
                     HeightRequest="24"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                     Margin="16,21,16,21"
+                    Source="ic_program_generic_default.png"
                     />
             </StackLayout>
             <StackLayout
