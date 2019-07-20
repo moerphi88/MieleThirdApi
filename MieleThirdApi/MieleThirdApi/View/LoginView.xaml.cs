@@ -17,12 +17,7 @@ namespace MieleThirdApi.View
         public LoginView()
         {
             InitializeComponent();
-        }
-
-        public LoginView(ILoginManager loginManager)
-        {
-            InitializeComponent();
-            BindingContext = new LoginViewModel(this.Navigation, loginManager);
+            BindingContext = new LoginViewModel(this.Navigation);
         }
     }
 }

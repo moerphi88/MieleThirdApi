@@ -20,7 +20,7 @@ namespace MieleThirdApi.ViewModel
             get { return _credential; }
             set { _credential = value; OnPropertyChanged(); }
         }
-        public LoginViewModel(INavigation navigation, ILoginManager loginManager) : base(navigation, loginManager)
+        public LoginViewModel(INavigation navigation) : base(navigation)
         {
             LoginCommand = new Command(async () => await LoginAsync());
         }

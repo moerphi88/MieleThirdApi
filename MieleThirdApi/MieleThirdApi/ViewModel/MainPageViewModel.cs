@@ -12,7 +12,7 @@ namespace MieleThirdApi.ViewModel
 {
     class MainPageViewModel : BaseViewModel
     {
-        public MainPageViewModel(INavigation navigation) : base(navigation, null)
+        public MainPageViewModel(INavigation navigation) : base(navigation)
         {
             //StartPolling();
             GetDeviceList();
@@ -29,8 +29,6 @@ namespace MieleThirdApi.ViewModel
             get { return _isBusy; }
             set { _isBusy = value; OnPropertyChanged(); }
         }
-
-        
 
         private object _itemSelected;
         public object ItemSelected

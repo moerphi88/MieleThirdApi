@@ -13,11 +13,11 @@ namespace MieleThirdApi.ViewModel
     {
         
         protected INavigation _navigation { get; }
-        protected IRestApi _restApi { get; }
-        protected IGeraeteManager _geraeteManager { get; }
-        protected ILoginManager _loginManager;
+        protected static IRestApi _restApi { get; private set; }
+        protected static IGeraeteManager _geraeteManager { get; private set; }
+        protected static ILoginManager _loginManager { get; private set; }
 
-        protected BaseViewModel(INavigation navigation, ILoginManager loginManager)
+        protected BaseViewModel(INavigation navigation)
         { 
             _navigation = navigation;
 
@@ -25,10 +25,11 @@ namespace MieleThirdApi.ViewModel
             //_restApi = new RestMockService();
             _restApi = _restApi ?? new RestApiService();
             
-            //Wenn ich das hier erstelle, dann wird ja für jeden View, der von BaseVM erbt ein neuer Gerätemanager angelegt. Nicht gut
+            //Wenn ich das hier erstelle, dann wird ja für jeden View, der von BaseVM erbt ein neuer Gerätemanager angelegt. Nicht gut!
+            // Durch die Umstellung auf static und die ?? Abfrage wird jetzt nur noch ein Object erstellt.
             _geraeteManager = _geraeteManager ?? new GeraeteManager(_restApi);
 
-            _loginManager = loginManager;
+            _loginManager = _loginManager ?? new LoginMockManager(); ;
             //_loginManager.LoggedOut += OnLoggedOut;
         }
 
