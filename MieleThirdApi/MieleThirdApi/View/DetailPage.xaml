@@ -5,7 +5,7 @@
              xmlns:local="clr-namespace:MieleThirdApi"
              xmlns:custom="clr-namespace:MieleThirdApi.Control">
     <ContentPage.Content>
-        <StackLayout>
+        <!--<StackLayout Orientation="Vertical">
            <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="true" IsRunning="true"
            HeightRequest="50" />
             <Button Text="Back" Command="{Binding BackNavigationCommand}">
@@ -24,6 +24,14 @@
                 KeyText ="{Binding Details.Name}"
                 ValueText ="{Binding Details.EndeZeit}">
             </custom:KeyValueHorizontal>
+            <custom:FaceliftCell HeightRequest="66"></custom:FaceliftCell>
+        </StackLayout>-->
+        <StackLayout>
+            <AbsoluteLayout HorizontalOptions="Center">
+                <BoxView WidthRequest="100" HeightRequest="150" BackgroundColor="Black" AbsoluteLayout.LayoutBounds="0,0,.5,.1" AbsoluteLayout.LayoutFlags="All" ></BoxView>
+                <BoxView WidthRequest="50" HeightRequest="50" BackgroundColor="Yellow" ></BoxView>
+            </AbsoluteLayout>
+            <custom:FaceliftCellGrid HorizontalOptions="Center"></custom:FaceliftCellGrid>
             <custom:FaceliftCell HeightRequest="66"></custom:FaceliftCell>
         </StackLayout>
     </ContentPage.Content>

@@ -28,12 +28,13 @@ namespace MieleThirdApi.ViewModel
             _geraeteManager = new GeraeteManager(_restApi);
 
             _loginManager = loginManager;
+            //_loginManager.LoggedOut += OnLoggedOut;
         }
 
-        protected virtual async Task OnLoggedOut(object sender, EventArgs e)
-        {
-            await _navigation.PushModalAsync(new LoginView(_loginManager));
-        }
+        //protected virtual Task OnLoggedOut(object sender, EventArgs e)
+        //{
+        //    _navigation.PushModalAsync(new LoginView(_loginManager));
+        //}
 
         #region INotifyPropertyChanges Handler
 
