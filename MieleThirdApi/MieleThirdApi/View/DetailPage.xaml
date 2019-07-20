@@ -27,10 +27,17 @@
             </custom:KeyValueHorizontal>
             <custom:FaceliftCell HeightRequest="66"></custom:FaceliftCell>
         </StackLayout>-->
+        
         <ScrollView>
             <StackLayout
             Spacing="0">
-            
+
+                <ActivityIndicator 
+                IsVisible="{Binding IsBusy}"
+                IsEnabled="true"
+                IsRunning="true"
+                HeightRequest="50" />
+
                 <!-- Title section with illustration -->
                 <BoxView 
                 HorizontalOptions="Center"
@@ -45,10 +52,11 @@
                 Margin="16,36,16,12"
                 TextColor="#a1a1a1"/>
             
-                <custom:FaceliftCellGrid 
-                IconImageSource="ic_program_generic_default.png"
-                KeyText="PROGRAMM"
-                ValueText="QuickPowerWash"
+                <custom:FaceliftCellGrid
+                IconImageSource="{Binding Program.ImageSource}"
+                KeyText="{Binding Program.KeyText}"
+                ValueText="{Binding Program.ValueText}"
+                ArrowIsVisible="{Binding Program.IsEditable}"
                 HorizontalOptions="Center"/>
 
                 <custom:Divider></custom:Divider>

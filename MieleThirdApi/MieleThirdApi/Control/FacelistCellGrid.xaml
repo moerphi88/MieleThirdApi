@@ -33,7 +33,7 @@
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                     Margin="16,21,16,21"
-                    Source="ic_program_generic_default.png"
+                    Source=""
                     />
             </StackLayout>
             <StackLayout
@@ -43,14 +43,14 @@
                 Grid.Column="1"
                 Grid.ColumnSpan="2">
                 <Label              
-                    Text="PROGRAM"
+                    Text=""
                     x:Name="LableText"
                     Margin="0,15,0,0"
                     FontSize="13"
                     TextColor="#A1A1A1"
                     HeightRequest="15"/>
                 <Label 
-                    Text="QuickPowerWash"
+                    Text=""
                     x:Name="valueText"
                     Margin="0,2,0,13"
                     TextColor="#FFFFFF"
