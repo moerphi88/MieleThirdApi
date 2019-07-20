@@ -27,6 +27,7 @@
                 Grid.Column="0"
                 VerticalOptions="Center">
                 <BoxView
+                    x:Name="box"
                     BackgroundColor="White"
                     WidthRequest="24"
                     HeightRequest="24"
@@ -43,10 +44,13 @@
                 Grid.ColumnSpan="2">
                 <Label              
                     Text="PROGRAM"
+                    x:Name="LableText"
                     Margin="0,16,0,0"
                     FontSize="13"
                     TextColor="#A1A1A1"/>
-                <Label Text="QuickPowerWash"
+                <Label 
+                    Text="QuickPowerWash"
+                    x:Name="valueText"
                     Margin="0,0,0,16"
                     TextColor="#FFFFFF"
                     FontSize="18" />

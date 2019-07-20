@@ -31,7 +31,7 @@
                 <BoxView WidthRequest="100" HeightRequest="150" BackgroundColor="Black" AbsoluteLayout.LayoutBounds="0,0,.5,.1" AbsoluteLayout.LayoutFlags="All" ></BoxView>
                 <BoxView WidthRequest="50" HeightRequest="50" BackgroundColor="Yellow" ></BoxView>
             </AbsoluteLayout>
-            <custom:FaceliftCellGrid HorizontalOptions="Center"></custom:FaceliftCellGrid>
+            <custom:FaceliftCellGrid BoxColor="Red" KeyText="333" ValueText="2000" HorizontalOptions="Center"></custom:FaceliftCellGrid>
             <custom:FaceliftCell HeightRequest="66"></custom:FaceliftCell>
         </StackLayout>
     </ContentPage.Content>
