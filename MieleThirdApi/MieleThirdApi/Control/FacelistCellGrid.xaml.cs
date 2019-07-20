@@ -77,6 +77,27 @@ namespace MieleThirdApi.Control
         //    control.box.BackgroundColor = (Color)newValue;
         //}
 
+        // BoxColor
+        public static readonly BindableProperty IconImageSourceProperty = BindableProperty.Create(
+                                                         propertyName: "IconImageSource",
+                                                         returnType: typeof(string),
+                                                         declaringType: typeof(FaceliftCellGrid),
+                                                         defaultValue: "",
+                                                         defaultBindingMode: BindingMode.TwoWay,
+                                                         propertyChanged: IconImageSourcePropertyChanged);
+
+        public string IconImageSource
+        {
+            get { return base.GetValue(IconImageSourceProperty).ToString(); }
+            set { base.SetValue(IconImageSourceProperty, value); }
+        }
+
+        private static void IconImageSourcePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var control = (FaceliftCellGrid)bindable;
+            control.icon.Source = newValue.ToString();
+        }
+
         // Arrow Visibilty
         public static readonly BindableProperty ArrowIsVisibleProperty = BindableProperty.Create(
                                                          propertyName: "ArrowIsVisible",
@@ -88,8 +109,8 @@ namespace MieleThirdApi.Control
 
         public bool ArrowIsVisible
         {
-            get { return (bool)base.GetValue(BoxColorProperty); }
-            set { base.SetValue(BoxColorProperty, value); }
+            get { return (bool)base.GetValue(ArrowIsVisibleProperty); }
+            set { base.SetValue(ArrowIsVisibleProperty, value); }
         }
 
         private static void ArrowIsVisiblePropertyChanged(BindableObject bindable, object oldValue, object newValue)

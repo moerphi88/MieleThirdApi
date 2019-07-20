@@ -27,6 +27,7 @@
                 Grid.Column="0"
                 VerticalOptions="Center">
                 <Image
+                    x:Name="icon"
                     WidthRequest="24"
                     HeightRequest="24"
                     HorizontalOptions="Center"

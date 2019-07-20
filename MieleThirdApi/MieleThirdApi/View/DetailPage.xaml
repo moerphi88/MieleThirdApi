@@ -46,7 +46,7 @@
                 TextColor="#a1a1a1"/>
             
             <custom:FaceliftCellGrid 
-                BoxColor="White"
+                IconImageSource="ic_program_generic_default.png"
                 KeyText="PROGRAMM"
                 ValueText="QuickPowerWash"
                 HorizontalOptions="Center"/>
@@ -58,7 +58,7 @@
                 IsVisible = "False"/>
 
             <custom:FaceliftCellGrid 
-                BoxColor="White"
+                IconImageSource="ic_program_generic_default.png"
                 KeyText="TEMPERATURE"
                 ValueText="40 °C"
                 HorizontalOptions="Center"/>
@@ -70,7 +70,7 @@
                 IsVisible = "False"/>
             
             <custom:FaceliftCellGrid 
-                BoxColor="White"
+                IconImageSource="ic_program_generic_default.png"
                 KeyText="SPIN SPEED"
                 ValueText="600 rpm"
                 HorizontalOptions="Center"/>
@@ -87,8 +87,8 @@
                 Margin="16,36,16,12"
                 TextColor="#a1a1a1"/>
 
-            <custom:FaceliftCellGrid 
-                BoxColor="White"
+            <custom:FaceliftCellGrid
+                IconImageSource="ic_program_generic_default.png"
                 KeyText="TWINDOS, CAPDOSING"
                 ValueText="Standard"
                 HorizontalOptions="Center"/>
@@ -100,7 +100,7 @@
                 IsVisible="False"/>
 
             <custom:FaceliftCellGrid 
-                BoxColor="White"
+                IconImageSource="ic_program_generic_default.png"
                 KeyText="OPTIONS"
                 ValueText="No Extras"
                 HorizontalOptions="Center"/>
@@ -117,8 +117,8 @@
                 Margin="16,36,16,12"
                 TextColor="#a1a1a1"/>
 
-            <custom:FaceliftCellGrid 
-                BoxColor="White"
+            <custom:FaceliftCellGrid   
+                IconImageSource="ic_program_generic_default.png"
                 KeyText="START AT"
                 ValueText="Immediately"
                 HorizontalOptions="Center"/>
@@ -130,7 +130,7 @@
                 IsVisible="False"/>
 
             <custom:FaceliftCellGrid 
-                BoxColor="White"
+                IconImageSource="ic_program_generic_default.png"
                 KeyText="FINISH AT"
                 ValueText="18:57"
                 HorizontalOptions="Center"/>
@@ -141,8 +141,8 @@
                 BackgroundColor="White"
                 IsVisible="False"/>
 
-            <custom:FaceliftCellGrid 
-                BoxColor="White"
+            <custom:FaceliftCellGrid
+                IconImageSource="ic_program_generic_default.png"
                 KeyText="DURATION"
                 ValueText="00:59"
                 ArrowIsVisible="false"
