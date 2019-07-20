@@ -13,7 +13,7 @@ namespace MieleThirdApi.ViewModel
     class LoginViewModel : BaseViewModel
     {
         private Credential _credential;
-        
+        private ILoginManager _loginManager;
 
         public Credential Credential
         {
@@ -22,12 +22,14 @@ namespace MieleThirdApi.ViewModel
         }
         public LoginViewModel(INavigation navigation) : base(navigation)
         {
+            _loginManager = App.LoginManager;
+
             LoginCommand = new Command(async () => await LoginAsync());
         }
 
         async Task LoginAsync()
         {
-            await _navigation.PushModalAsync(new MainPage());
+            await _navigation.PopModalAsync();
         }
 
         public ICommand LoginCommand { get; set; }

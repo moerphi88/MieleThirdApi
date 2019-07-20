@@ -15,7 +15,7 @@ namespace MieleThirdApi.ViewModel
         protected INavigation _navigation { get; }
         protected static IRestApi _restApi { get; private set; }
         protected static IGeraeteManager _geraeteManager { get; private set; }
-        protected static ILoginManager _loginManager { get; private set; }
+        
 
         protected BaseViewModel(INavigation navigation)
         { 
@@ -29,7 +29,7 @@ namespace MieleThirdApi.ViewModel
             // Durch die Umstellung auf static und die ?? Abfrage wird jetzt nur noch ein Object erstellt.
             _geraeteManager = _geraeteManager ?? new GeraeteManager(_restApi);
 
-            _loginManager = _loginManager ?? new LoginMockManager(); ;
+            
             //_loginManager.LoggedOut += OnLoggedOut;
         }
 

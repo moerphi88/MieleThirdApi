@@ -6,10 +6,36 @@
              mc:Ignorable="d"
              x:Class="MieleThirdApi.View.LoginView">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView            
+        BackgroundColor="#1F2328">
+        <StackLayout
+            VerticalOptions="Center"
+            Margin="20"
+            Spacing="20">
+            <Label 
+                Text="Bitte log dich mit deinem myMiele Account für Deutschland ein" 
+                HorizontalOptions="CenterAndExpand"
+                HorizontalTextAlignment="Center"
+                TextColor="#A1A1A1"
+                FontSize="18"/>
+            <Entry 
+                HorizontalOptions="Fill"
+                Placeholder="Benutzername"
+                Text="{Binding Credential.User}"
+                TextColor="#A1A1A1"
+                PlaceholderColor="#A1A1A1"/>
+            <Entry 
+                HorizontalOptions="Fill"
+                Placeholder="Passwort"
+                Text="{Binding Credential.Password}"
+                TextColor="#A1A1A1"
+                PlaceholderColor="#A1A1A1"/>
+            <Button
+                Text="Login"
+                TextColor="#A1A1A1"
+                BackgroundColor="#1F2328"
+                Command="{Binding LoginCommand}"/>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

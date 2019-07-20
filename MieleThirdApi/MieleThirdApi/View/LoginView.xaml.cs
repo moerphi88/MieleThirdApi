@@ -19,5 +19,12 @@ namespace MieleThirdApi.View
             InitializeComponent();
             BindingContext = new LoginViewModel(this.Navigation);
         }
+
+        protected override bool OnBackButtonPressed()
+        {
+            //now the app goes to background, if the user presses the button
+            base.OnBackButtonPressed();
+            return false;
+        }
     }
 }
