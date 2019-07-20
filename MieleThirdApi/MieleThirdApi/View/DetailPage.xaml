@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MieleThirdApi.View.DetailPage"
              xmlns:local="clr-namespace:MieleThirdApi"
-             xmlns:custom="clr-namespace:MieleThirdApi.Control">
+             xmlns:custom="clr-namespace:MieleThirdApi.Control"
+             BackgroundColor="#1F2328">
     <ContentPage.Content>
         <!--<StackLayout Orientation="Vertical">
            <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="true" IsRunning="true"
@@ -26,13 +27,134 @@
             </custom:KeyValueHorizontal>
             <custom:FaceliftCell HeightRequest="66"></custom:FaceliftCell>
         </StackLayout>-->
-        <StackLayout>
-            <AbsoluteLayout HorizontalOptions="Center">
-                <BoxView WidthRequest="100" HeightRequest="150" BackgroundColor="Black" AbsoluteLayout.LayoutBounds="0,0,.5,.1" AbsoluteLayout.LayoutFlags="All" ></BoxView>
-                <BoxView WidthRequest="50" HeightRequest="50" BackgroundColor="Yellow" ></BoxView>
-            </AbsoluteLayout>
-            <custom:FaceliftCellGrid BoxColor="Red" KeyText="333" ValueText="2000" HorizontalOptions="Center"></custom:FaceliftCellGrid>
-            <custom:FaceliftCell HeightRequest="66"></custom:FaceliftCell>
-        </StackLayout>
+        <ScrollView>
+        <StackLayout
+            Spacing="0">
+            
+            <!-- Title section with illustration -->
+            <BoxView 
+                HorizontalOptions="Center"
+                Margin="0,32,0,16"
+                HeightRequest="143"
+                WidthRequest="101"
+                BackgroundColor="Accent"/>
+            
+            <!-- Main program section -->
+            <Label
+                Text="MAIN PROGRAMM PARAMETER"
+                Margin="16,36,16,12"
+                TextColor="#a1a1a1"/>
+            
+            <custom:FaceliftCellGrid 
+                BoxColor="White"
+                KeyText="PROGRAMM"
+                ValueText="QuickPowerWash"
+                HorizontalOptions="Center"/>
+
+            <BoxView 
+                HeightRequest="1"
+                Margin="16,0,16,0"
+                BackgroundColor="White"                     
+                IsVisible = "False"/>
+
+            <custom:FaceliftCellGrid 
+                BoxColor="White"
+                KeyText="TEMPERATURE"
+                ValueText="40 °C"
+                HorizontalOptions="Center"/>
+
+            <BoxView 
+                HeightRequest="1"
+                Margin="16,0,16,0"
+                BackgroundColor="White"                     
+                IsVisible = "False"/>
+            
+            <custom:FaceliftCellGrid 
+                BoxColor="White"
+                KeyText="SPIN SPEED"
+                ValueText="600 rpm"
+                HorizontalOptions="Center"/>
+
+            <BoxView 
+                HeightRequest="1"
+                Margin="16,0,16,0"
+                BackgroundColor="White"
+                IsVisible="False"/>
+
+            <!-- Additional options section -->
+            <Label
+                Text="ADDITIONAL OPTIONS"
+                Margin="16,36,16,12"
+                TextColor="#a1a1a1"/>
+
+            <custom:FaceliftCellGrid 
+                BoxColor="White"
+                KeyText="TWINDOS, CAPDOSING"
+                ValueText="Standard"
+                HorizontalOptions="Center"/>
+
+            <BoxView 
+                HeightRequest="1"
+                Margin="16,0,16,0"
+                BackgroundColor="White"
+                IsVisible="False"/>
+
+            <custom:FaceliftCellGrid 
+                BoxColor="White"
+                KeyText="OPTIONS"
+                ValueText="No Extras"
+                HorizontalOptions="Center"/>
+
+            <BoxView 
+                HeightRequest="1"
+                Margin="16,0,16,0"
+                BackgroundColor="White"
+                IsVisible="False"/>
+
+            <!-- Delay Start section -->
+            <Label
+                Text="DELAY START"
+                Margin="16,36,16,12"
+                TextColor="#a1a1a1"/>
+
+            <custom:FaceliftCellGrid 
+                BoxColor="White"
+                KeyText="START AT"
+                ValueText="Immediately"
+                HorizontalOptions="Center"/>
+
+            <BoxView 
+                HeightRequest="1"
+                Margin="16,0,16,0"
+                BackgroundColor="White"
+                IsVisible="False"/>
+
+            <custom:FaceliftCellGrid 
+                BoxColor="White"
+                KeyText="FINISH AT"
+                ValueText="18:57"
+                HorizontalOptions="Center"/>
+
+            <BoxView 
+                HeightRequest="1"
+                Margin="16,0,16,0"
+                BackgroundColor="White"
+                IsVisible="False"/>
+
+            <custom:FaceliftCellGrid 
+                BoxColor="White"
+                KeyText="DURATION"
+                ValueText="00:59"
+                ArrowIsVisible="false"
+                HorizontalOptions="Center"/>
+
+            <BoxView 
+                HeightRequest="1"
+                Margin="16,0,16,0"
+                BackgroundColor="White"
+                IsVisible="False"/>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -93,7 +93,7 @@ namespace MieleThirdApi.ViewModel
         async Task NavigateToDetailPageAsync()
         {
             _pollingIsActive = false;
-            await _navigation.PushModalAsync(new DetailPage(_fabNr));
+            await _navigation.PushAsync(new DetailPage(_fabNr));
         }
 
         public ICommand UpdateCommand { get; set; }

@@ -77,6 +77,27 @@ namespace MieleThirdApi.Control
             control.box.BackgroundColor = (Color)newValue;
         }
 
+        // Arrow Visibilty
+        public static readonly BindableProperty ArrowIsVisibleProperty = BindableProperty.Create(
+                                                         propertyName: "ArrowIsVisible",
+                                                         returnType: typeof(bool),
+                                                         declaringType: typeof(FaceliftCellGrid),
+                                                         defaultValue: true,
+                                                         defaultBindingMode: BindingMode.TwoWay,
+                                                         propertyChanged: ArrowIsVisiblePropertyChanged);
+
+        public bool ArrowIsVisible
+        {
+            get { return (bool)base.GetValue(BoxColorProperty); }
+            set { base.SetValue(BoxColorProperty, value); }
+        }
+
+        private static void ArrowIsVisiblePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var control = (FaceliftCellGrid)bindable;
+            control.arrow.IsVisible = (bool)newValue;
+        }
+
 
         public FaceliftCellGrid()
         {
