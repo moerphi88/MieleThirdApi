@@ -11,6 +11,7 @@ namespace MieleThirdApi.ViewModel
 {
     class BaseViewModel : INotifyPropertyChanged
     {
+        
         protected INavigation _navigation { get; }
         protected IRestApi _restApi { get; }
         protected IGeraeteManager _geraeteManager { get; }
@@ -22,10 +23,10 @@ namespace MieleThirdApi.ViewModel
 
             //Hier kann später die Compiler MOCK Abfrage rein
             //_restApi = new RestMockService();
-            _restApi = new RestApiService();
+            _restApi = _restApi ?? new RestApiService();
             
             //Wenn ich das hier erstelle, dann wird ja für jeden View, der von BaseVM erbt ein neuer Gerätemanager angelegt. Nicht gut
-            _geraeteManager = new GeraeteManager(_restApi);
+            _geraeteManager = _geraeteManager ?? new GeraeteManager(_restApi);
 
             _loginManager = loginManager;
             //_loginManager.LoggedOut += OnLoggedOut;
