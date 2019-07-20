@@ -28,131 +28,99 @@
             <custom:FaceliftCell HeightRequest="66"></custom:FaceliftCell>
         </StackLayout>-->
         <ScrollView>
-        <StackLayout
+            <StackLayout
             Spacing="0">
             
-            <!-- Title section with illustration -->
-            <BoxView 
+                <!-- Title section with illustration -->
+                <BoxView 
                 HorizontalOptions="Center"
                 Margin="0,32,0,16"
                 HeightRequest="143"
                 WidthRequest="101"
-                BackgroundColor="Accent"/>
+                BackgroundColor="AntiqueWhite"/>
             
-            <!-- Main program section -->
-            <Label
+                <!-- Main program section -->
+                <Label
                 Text="MAIN PROGRAMM PARAMETER"
                 Margin="16,36,16,12"
                 TextColor="#a1a1a1"/>
             
-            <custom:FaceliftCellGrid 
+                <custom:FaceliftCellGrid 
                 IconImageSource="ic_program_generic_default.png"
                 KeyText="PROGRAMM"
                 ValueText="QuickPowerWash"
                 HorizontalOptions="Center"/>
 
-            <BoxView 
-                HeightRequest="1"
-                Margin="16,0,16,0"
-                BackgroundColor="White"                     
-                IsVisible = "False"/>
+                <custom:Divider></custom:Divider>
 
-            <custom:FaceliftCellGrid 
+                <custom:FaceliftCellGrid 
                 IconImageSource="ic_program_generic_default.png"
                 KeyText="TEMPERATURE"
                 ValueText="40 °C"
                 HorizontalOptions="Center"/>
 
-            <BoxView 
-                HeightRequest="1"
-                Margin="16,0,16,0"
-                BackgroundColor="White"                     
-                IsVisible = "False"/>
-            
-            <custom:FaceliftCellGrid 
+                <custom:Divider></custom:Divider>
+
+                <custom:FaceliftCellGrid 
                 IconImageSource="ic_program_generic_default.png"
                 KeyText="SPIN SPEED"
                 ValueText="600 rpm"
                 HorizontalOptions="Center"/>
 
-            <BoxView 
-                HeightRequest="1"
-                Margin="16,0,16,0"
-                BackgroundColor="White"
-                IsVisible="False"/>
+                <custom:Divider></custom:Divider>
 
-            <!-- Additional options section -->
-            <Label
+                <!-- Additional options section -->
+                <Label
                 Text="ADDITIONAL OPTIONS"
                 Margin="16,36,16,12"
                 TextColor="#a1a1a1"/>
 
-            <custom:FaceliftCellGrid
+                <custom:FaceliftCellGrid
                 IconImageSource="ic_program_generic_default.png"
                 KeyText="TWINDOS, CAPDOSING"
                 ValueText="Standard"
                 HorizontalOptions="Center"/>
 
-            <BoxView 
-                HeightRequest="1"
-                Margin="16,0,16,0"
-                BackgroundColor="White"
-                IsVisible="False"/>
+                <custom:Divider></custom:Divider>
 
-            <custom:FaceliftCellGrid 
+                <custom:FaceliftCellGrid 
                 IconImageSource="ic_program_generic_default.png"
                 KeyText="OPTIONS"
                 ValueText="No Extras"
                 HorizontalOptions="Center"/>
 
-            <BoxView 
-                HeightRequest="1"
-                Margin="16,0,16,0"
-                BackgroundColor="White"
-                IsVisible="False"/>
+                <custom:Divider></custom:Divider>
 
-            <!-- Delay Start section -->
-            <Label
+                <!-- Delay Start section -->
+                <Label
                 Text="DELAY START"
                 Margin="16,36,16,12"
                 TextColor="#a1a1a1"/>
 
-            <custom:FaceliftCellGrid   
+                <custom:FaceliftCellGrid   
                 IconImageSource="ic_program_generic_default.png"
                 KeyText="START AT"
                 ValueText="Immediately"
                 HorizontalOptions="Center"/>
 
-            <BoxView 
-                HeightRequest="1"
-                Margin="16,0,16,0"
-                BackgroundColor="White"
-                IsVisible="False"/>
+                <custom:Divider></custom:Divider>
 
-            <custom:FaceliftCellGrid 
+                <custom:FaceliftCellGrid 
                 IconImageSource="ic_program_generic_default.png"
                 KeyText="FINISH AT"
                 ValueText="18:57"
                 HorizontalOptions="Center"/>
 
-            <BoxView 
-                HeightRequest="1"
-                Margin="16,0,16,0"
-                BackgroundColor="White"
-                IsVisible="False"/>
+                <custom:Divider></custom:Divider>
 
-            <custom:FaceliftCellGrid
+                <custom:FaceliftCellGrid
                 IconImageSource="ic_program_generic_default.png"
                 KeyText="DURATION"
                 ValueText="00:59"
                 ArrowIsVisible="false"
                 HorizontalOptions="Center"/>
 
-            <BoxView 
-                HeightRequest="1"
-                Margin="16,0,16,0"
-                BackgroundColor="White"
-                IsVisible="False"/>
+                <custom:Divider></custom:Divider>
 
             </StackLayout>
         </ScrollView>
