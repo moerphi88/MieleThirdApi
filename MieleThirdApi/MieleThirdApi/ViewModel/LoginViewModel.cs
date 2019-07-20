@@ -39,7 +39,7 @@ namespace MieleThirdApi.ViewModel
             }
             else
             {                
-                await App.Current.MainPage.DisplayAlert("Halt Stop!", "Der Login war nicht Erfolgreich", "Ok");
+                await App.Current.MainPage.DisplayAlert("Halt Stop!", "Der Login war nicht erfolgreich", "Ok");
             }
         }
 

@@ -38,15 +38,15 @@ namespace MieleThirdApi.Data
             }
             var tokenResponse = "{\"access_token\":\"DE_4ffe8e9614659ee918d54cc99cb356cb\",\"refresh_token\":\"DE_1e1f3e0b84e7b01d3e03586031d83992\",\"token_type\":\"Bearer\",\"expires_in\":2592000}";
             _token = await Task.Run(() => JsonConvert.DeserializeObject<Token>(tokenResponse));
-            await Task.Delay(3000);
+            await Task.Delay(1000);
             return returnValue; 
         }
 
         public async Task<bool> Logout()
-        {
-            LoggedOut?.Invoke(this, new EventArgs());
-            // Her goes the logout code. Delete data from device etc.
+        {            
+            // Here goes the logout code. Delete data from device etc.
             await Task.Delay(1000);
+            LoggedOut?.Invoke(this, new EventArgs());
             return true;
         }
 

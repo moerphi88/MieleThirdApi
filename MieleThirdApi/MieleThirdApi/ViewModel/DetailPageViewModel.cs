@@ -26,7 +26,16 @@ namespace MieleThirdApi.ViewModel
             System.Diagnostics.Debug.WriteLine($"{nameof(DetailPageViewModel)} Konstruktor fertig nach {watch.ElapsedMilliseconds} ms");
             System.Diagnostics.Debug.WriteLine($"{nameof(DetailPageViewModel)} No. {count}");
             count++;
+
+            //waitAndLogout();
+
         }
+
+        //async Task waitAndLogout()
+        //{
+        //    await Task.Delay(3000);
+        //    await App.LoginManager.Logout();
+        //}
 
         ~DetailPageViewModel()
         {

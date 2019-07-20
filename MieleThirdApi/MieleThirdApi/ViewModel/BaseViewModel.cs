@@ -35,13 +35,16 @@ namespace MieleThirdApi.ViewModel
             // Durch die Umstellung auf static und die ?? Abfrage wird jetzt nur noch ein Object erstellt.
             _geraeteManager = _geraeteManager ?? new GeraeteManager(_restApi);
 
-            
-            //_loginManager.LoggedOut += OnLoggedOut;
+            //Wenn ich das hier mache, dann werden bei jedem aktiven Objekt die Events abgefangen und OnLoggedOUt ausgeführt, was dann zu mehreren Logout Views führt. Man muss das so gestalten, dass nur das aktive ViewModel/die aktive View das Event bekommt oder zur LoginView navigiert
+            App.LoginManager.LoggedOut += OnLoggedOut;
         }
 
-        //protected virtual Task OnLoggedOut(object sender, EventArgs e)
+        //protected virtual void OnLoggedOut(object sender, EventArgs e)
         //{
-        //    _navigation.PushModalAsync(new LoginView(_loginManager));
+        //    if(_navigation.ModalStack.Count == 0)
+        //    {
+        //        _navigation.PushModalAsync(new LoginView());
+        //    }
         //}
 
         #region INotifyPropertyChanges Handler
