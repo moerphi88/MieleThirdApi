@@ -67,30 +67,31 @@ namespace MieleThirdApi.Model
 
         private double GetProgressBarValue(List<int> remainingTime, List<int> elapsedTime)
         {
-            double elapsedMinutes;
-            double remainingMinutes;
+            //double elapsedMinutes;
+            //double remainingMinutes;
 
-            //Ich könnte hier auch mit einer Exception arbeiten, die dann gecatched wird und in dem Fall wird .0 returned
-            if (elapsedTime?.Count == 2)
-            {
-                elapsedMinutes = elapsedTime[0]*60 + elapsedTime[1];
-            } else
-            {
-                return .0;
-            }
+            ////Ich könnte hier auch mit einer Exception arbeiten, die dann gecatched wird und in dem Fall wird .0 returned
+            //if (elapsedTime?.Count == 2)
+            //{
+            //    elapsedMinutes = elapsedTime[0]*60 + elapsedTime[1];
+            //} else
+            //{
+            //    return .0;
+            //}
 
-            if (remainingTime?.Count == 2)
-            {
-                remainingMinutes = remainingTime[0]*60 + remainingTime[1];
-            }
-            else
-            {
-                return .0;
-            }
+            //if (remainingTime?.Count == 2)
+            //{
+            //    remainingMinutes = remainingTime[0]*60 + remainingTime[1];
+            //}
+            //else
+            //{
+            //    return .0;
+            //}
 
-            var totalMinutes = remainingMinutes + elapsedMinutes;
+            //var totalMinutes = remainingMinutes + elapsedMinutes;
 
-            return (elapsedMinutes / totalMinutes);      
+            //return (elapsedMinutes / totalMinutes);      
+            return .1;
         }
     }
 }

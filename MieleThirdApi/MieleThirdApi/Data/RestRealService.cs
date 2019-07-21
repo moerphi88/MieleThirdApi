@@ -12,8 +12,8 @@ namespace MieleThirdApi.Data
 {
     public class RestRealService : IRestApi
     {
-        HttpClient client;
-        Token token;
+        HttpClient _client;
+        ILoginManager _loginManager;
 
         //curl -X GET "https://api.mcs3.miele.com/v1/devices/" -H  "accept: application/json; charset=utf-8"
         static string DevicesUrl = "https://api.mcs3.miele.com/v1/devices/?language=de";
@@ -30,10 +30,12 @@ namespace MieleThirdApi.Data
             //    };
             //client = new HttpClient(handler);
 
-            client = new HttpClient();
+            _client = new HttpClient();
 
-            client.MaxResponseContentBufferSize = 256000;
-            client.DefaultRequestHeaders.Add("Accept-Language", "de-de");
+            _client.MaxResponseContentBufferSize = 256000;
+            //_client.DefaultRequestHeaders.Add("Accept-Language", "de-de");
+
+
         }
 
 
@@ -45,13 +47,12 @@ namespace MieleThirdApi.Data
 
         public async Task<List<Appliance>> GetAppliancesListAsync()
         {
-            // RestUrl = http://developer.xamarin.com:8081/api/todoitems
             var uri = new Uri(string.Format(DevicesUrl, string.Empty));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "DE_4ffe8e9614659ee918d54cc99cb356cb");
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "DE_4ffe8e9614659ee918d54cc99cb356cb");
             var list = new List<Appliance>();
             try
             {
-                var response = await client.GetAsync(uri);
+                var response = await _client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
                     var body = await response.Content.ReadAsStringAsync();
