@@ -12,18 +12,21 @@ namespace MieleThirdApi.ViewModel
     class DetailPageViewModel : BaseViewModel
     {
         Stopwatch watch = new Stopwatch();
-        public DetailPageViewModel(INavigation navigation, String fabNr) : base(navigation)
+        public DetailViewCellModel Program { get; set; }
+        public DetailPageViewModel(INavigation navigation, String fabNr) : base(navigation, null)
         {
             watch.Start();
             Init(fabNr);
-            
+
+            Program = new DetailViewCellModel();
+
             BackNavigationCommand =  new Command(async () => await NavigateBack());
             
             System.Diagnostics.Debug.WriteLine($"Konstruktor fertig nach {watch.ElapsedMilliseconds} ms");
 
         }
 
-        public DetailPageViewModel(INavigation navigation, DevicelistItem d) : base(navigation)
+        public DetailPageViewModel(INavigation navigation, DevicelistItem d) : base(navigation, null)
         {
             Details = d;
         }
@@ -40,6 +43,12 @@ namespace MieleThirdApi.ViewModel
             var device = await _geraeteManager.GetDeviceAsync(fabNr);
             //Details = device as Model.Device;
             Details = new DevicelistItem { Name = "Hu", EndeZeit = "Fu" };
+            
+            Program.KeyText = device.State.programType.key_localized.ToUpper();
+            Program.ValueText = String.IsNullOrEmpty(device.State.programType.value_localized) ? "QuickPowerWash" : device.State.programType.value_localized;
+            Program.ImageSource = "ic_program_generic_default.png";
+            Program.IsEditable = true;
+
             IsBusy = false;
             watch.Stop();
             System.Diagnostics.Debug.WriteLine($"Init fertig nach {watch.ElapsedMilliseconds} ms");

@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MieleThirdApi.View.DetailPage"
              xmlns:local="clr-namespace:MieleThirdApi"
-             xmlns:custom="clr-namespace:MieleThirdApi.Control">
+             xmlns:custom="clr-namespace:MieleThirdApi.Control"
+             BackgroundColor="#1F2328">
     <ContentPage.Content>
-        <StackLayout>
+        <!--<StackLayout Orientation="Vertical">
            <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="true" IsRunning="true"
            HeightRequest="50" />
             <Button Text="Back" Command="{Binding BackNavigationCommand}">
@@ -24,6 +25,112 @@
                 KeyText ="{Binding Details.Name}"
                 ValueText ="{Binding Details.EndeZeit}">
             </custom:KeyValueHorizontal>
-        </StackLayout>
+            <custom:FaceliftCell HeightRequest="66"></custom:FaceliftCell>
+        </StackLayout>-->
+        
+        <ScrollView>
+            <StackLayout
+            Spacing="0">
+
+                <ActivityIndicator 
+                IsVisible="{Binding IsBusy}"
+                IsEnabled="true"
+                IsRunning="true"
+                HeightRequest="50" />
+
+                <!-- Title section with illustration -->
+                <BoxView 
+                HorizontalOptions="Center"
+                Margin="0,32,0,16"
+                HeightRequest="143"
+                WidthRequest="101"
+                BackgroundColor="AntiqueWhite"/>
+            
+                <!-- Main program section -->
+                <Label
+                Text="MAIN PROGRAMM PARAMETER"
+                Margin="16,36,16,12"
+                TextColor="#a1a1a1"/>
+            
+                <custom:FaceliftCellGrid
+                IconImageSource="{Binding Program.ImageSource}"
+                KeyText="{Binding Program.KeyText}"
+                ValueText="{Binding Program.ValueText}"
+                ArrowIsVisible="{Binding Program.IsEditable}"
+                HorizontalOptions="Center"/>
+
+                <custom:Divider></custom:Divider>
+
+                <custom:FaceliftCellGrid 
+                IconImageSource="ic_program_generic_default.png"
+                KeyText="TEMPERATURE"
+                ValueText="40 °C"
+                HorizontalOptions="Center"/>
+
+                <custom:Divider></custom:Divider>
+
+                <custom:FaceliftCellGrid 
+                IconImageSource="ic_program_generic_default.png"
+                KeyText="SPIN SPEED"
+                ValueText="600 rpm"
+                HorizontalOptions="Center"/>
+
+                <custom:Divider></custom:Divider>
+
+                <!-- Additional options section -->
+                <Label
+                Text="ADDITIONAL OPTIONS"
+                Margin="16,36,16,12"
+                TextColor="#a1a1a1"/>
+
+                <custom:FaceliftCellGrid
+                IconImageSource="ic_program_generic_default.png"
+                KeyText="TWINDOS, CAPDOSING"
+                ValueText="Standard"
+                HorizontalOptions="Center"/>
+
+                <custom:Divider></custom:Divider>
+
+                <custom:FaceliftCellGrid 
+                IconImageSource="ic_program_generic_default.png"
+                KeyText="OPTIONS"
+                ValueText="No Extras"
+                HorizontalOptions="Center"/>
+
+                <custom:Divider></custom:Divider>
+
+                <!-- Delay Start section -->
+                <Label
+                Text="DELAY START"
+                Margin="16,36,16,12"
+                TextColor="#a1a1a1"/>
+
+                <custom:FaceliftCellGrid   
+                IconImageSource="ic_program_generic_default.png"
+                KeyText="START AT"
+                ValueText="Immediately"
+                HorizontalOptions="Center"/>
+
+                <custom:Divider></custom:Divider>
+
+                <custom:FaceliftCellGrid 
+                IconImageSource="ic_program_generic_default.png"
+                KeyText="FINISH AT"
+                ValueText="18:57"
+                HorizontalOptions="Center"/>
+
+                <custom:Divider></custom:Divider>
+
+                <custom:FaceliftCellGrid
+                IconImageSource="ic_program_generic_default.png"
+                KeyText="DURATION"
+                ValueText="00:59"
+                ArrowIsVisible="false"
+                HorizontalOptions="Center"/>
+
+                <custom:Divider></custom:Divider>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
