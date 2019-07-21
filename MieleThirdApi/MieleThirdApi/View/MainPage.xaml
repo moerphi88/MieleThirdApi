@@ -4,58 +4,78 @@
              xmlns:local="clr-namespace:MieleThirdApi"
              x:Class="MieleThirdApi.View.MainPage"
              BackgroundColor="DarkGray">
-
-    <StackLayout HorizontalOptions="CenterAndExpand">
-        <ActivityIndicator IsVisible="{Binding IsBusy}" IsEnabled="true" IsRunning="true" Color="Orange"
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-        <ListView ItemsSource="{Binding DeviceList}"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackLayout 
+            HorizontalOptions="CenterAndExpand"
+                    Grid.Column="0"
+                    Grid.Row="0">
+            <ListView ItemsSource="{Binding DeviceList}"
                   IsPullToRefreshEnabled="false"            
                   RefreshCommand="{Binding UpdateCommand}"             
                   HorizontalOptions="Center"
                   VerticalOptions="CenterAndExpand"
                   HasUnevenRows="true"
                   SelectedItem="{Binding ItemSelected, Mode=TwoWay}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout HeightRequest="100" Orientation="Horizontal" VerticalOptions="Start" >
-                            <Image HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFill"  Source="icon.png" ></Image>
-                            <StackLayout>
-                                <StackLayout Orientation="Horizontal" WidthRequest="300">
-                                    <StackLayout HorizontalOptions="StartAndExpand">
-                                        <Label Text="{Binding Name}" VerticalTextAlignment="Start" FontSize="Large" />
-                                        <Label Text="{Binding Status}" VerticalTextAlignment="Start" FontSize="Small" />
-                                    </StackLayout>
-                                    <StackLayout HorizontalOptions="EndAndExpand">
-                                        <Label x:Name="lblEndeZeit"  Text="{Binding EndeZeit}" VerticalTextAlignment="End" HorizontalOptions="EndAndExpand" FontSize="Large" />
-                                        <Label Text="Ende" VerticalTextAlignment="End" HorizontalOptions="EndAndExpand" FontSize="Small" >
-                                            <Label.Triggers>
-                                                <!--https://docs.microsoft.com/de-de/xamarin/xamarin-forms/app-fundamentals/triggers-->
-                                                <DataTrigger TargetType="Label"
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout HeightRequest="100" Orientation="Horizontal" VerticalOptions="Start" >
+                                <Image HorizontalOptions="Start" VerticalOptions="Center" Aspect="AspectFill"  Source="icon.png" ></Image>
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal" WidthRequest="300">
+                                        <StackLayout HorizontalOptions="StartAndExpand">
+                                            <Label Text="{Binding Name}" VerticalTextAlignment="Start" FontSize="Large" />
+                                            <Label Text="{Binding Status}" VerticalTextAlignment="Start" FontSize="Small" />
+                                        </StackLayout>
+                                        <StackLayout HorizontalOptions="EndAndExpand">
+                                            <Label x:Name="lblEndeZeit"  Text="{Binding EndeZeit}" VerticalTextAlignment="End" HorizontalOptions="EndAndExpand" FontSize="Large" />
+                                            <Label Text="Ende" VerticalTextAlignment="End" HorizontalOptions="EndAndExpand" FontSize="Small" >
+                                                <Label.Triggers>
+                                                    <!--https://docs.microsoft.com/de-de/xamarin/xamarin-forms/app-fundamentals/triggers-->
+                                                    <DataTrigger TargetType="Label"
                                                  Binding="{Binding Source={x:Reference lblEndeZeit},
                                                                    Path=Text.Length}"
                                                  Value="0">
-                                                 <Setter Property="IsVisible" Value="False" />
-                                                 </DataTrigger>
-                                            </Label.Triggers>
-                                        </Label>
+                                                        <Setter Property="IsVisible" Value="False" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                        </StackLayout>
                                     </StackLayout>
-                                </StackLayout>
-                                <ProgressBar Progress="{Binding ProgressBarValue}" WidthRequest="300" ProgressColor="Orange">
-                                    <ProgressBar.Triggers>
-                                        <Trigger TargetType="ProgressBar"
+                                    <ProgressBar Progress="{Binding ProgressBarValue}" WidthRequest="300" ProgressColor="Orange">
+                                        <ProgressBar.Triggers>
+                                            <Trigger TargetType="ProgressBar"
                                             Property="Progress" Value="0">
-                                            <Setter Property="IsVisible" Value="false" />
-                                        </Trigger>
-                                    </ProgressBar.Triggers>
-                                </ProgressBar>
+                                                <Setter Property="IsVisible" Value="false" />
+                                            </Trigger>
+                                        </ProgressBar.Triggers>
+                                    </ProgressBar>
+                                </StackLayout>
                             </StackLayout>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <BoxView
+                    HorizontalOptions="Fill"
+                    BackgroundColor="Gray"
+                    Opacity="0.8"
+                    IsVisible="{Binding IsBusy}"/>
+        <ActivityIndicator
+                    IsVisible="{Binding IsBusy}"
+                    IsEnabled="True"
+                    IsRunning="True"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    HorizontalOptions="Center"
+                    Color="Yellow"/>
+    </Grid>
 
 </ContentPage>

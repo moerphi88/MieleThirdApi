@@ -6,8 +6,7 @@
              mc:Ignorable="d"
              x:Class="MieleThirdApi.View.LoginView">
     <ContentPage.Content>
-        <ScrollView            
-        BackgroundColor="#1F2328">
+        <ScrollView BackgroundColor="#1F2328">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>

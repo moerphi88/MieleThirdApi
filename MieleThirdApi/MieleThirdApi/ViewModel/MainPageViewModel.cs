@@ -29,13 +29,6 @@ namespace MieleThirdApi.ViewModel
         private string _fabNr = "12345678";
         private DetailPage detailPage;
 
-        private bool _isBusy = false;
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set { _isBusy = value; OnPropertyChanged(); }
-        }
-
         private object _itemSelected;
         public object ItemSelected
         {
@@ -98,10 +91,15 @@ namespace MieleThirdApi.ViewModel
 
         async Task NavigateToDetailPageAsync()
         {
+            IsBusy = true;
             //System.Diagnostics.Debug.WriteLine($"NavigateToDetailPageAsync is called {App.watch.ElapsedMilliseconds} ms");
             _pollingIsActive = false;
-            await _navigation.PushAsync(new DetailPage(_fabNr));
+            // Fake loading / wait to overrule the bad loading/behavior of the list view selection and detail Page loading
+            var detailPage = new DetailPage(_fabNr);
+            await Task.Delay(700);
+            await _navigation.PushAsync(detailPage);
             //System.Diagnostics.Debug.WriteLine($"PushAsync for DetailPage done at  {App.watch.ElapsedMilliseconds} ms");
+            IsBusy = false;
         }
 
         public ICommand UpdateCommand { get; set; }
