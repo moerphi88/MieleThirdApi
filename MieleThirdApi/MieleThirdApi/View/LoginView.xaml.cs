@@ -18,6 +18,8 @@ namespace MieleThirdApi.View
         {
             InitializeComponent();
             BindingContext = new LoginViewModel(this.Navigation);
+            //https://iwritecodesometimes.net/2018/06/25/building-a-next-entry-effect-for-ios-and-android-in-xamarin-forms/
+            Entry_First.ReturnCommand = new Command(() => Entry_Second.Focus());
         }
 
         protected override bool OnBackButtonPressed()

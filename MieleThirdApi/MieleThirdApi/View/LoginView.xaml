@@ -28,17 +28,25 @@
                 TextColor="#A1A1A1"
                 FontSize="18"/>
                     <Entry 
+                        x:Name="Entry_First"
                 HorizontalOptions="Fill"
                 Placeholder="Benutzername"
                 Text="{Binding Credential.User}"
                 TextColor="#A1A1A1"
-                PlaceholderColor="#A1A1A1"/>
-                    <Entry 
+                PlaceholderColor="#A1A1A1"
+                        Keyboard="Email"
+                        ReturnType="Next"/>
+                    <Entry
+                        x:Name="Entry_Second"
                 HorizontalOptions="Fill"
                 Placeholder="Passwort"
                 Text="{Binding Credential.Password}"
                 TextColor="#A1A1A1"
-                PlaceholderColor="#A1A1A1"/>
+                PlaceholderColor="#A1A1A1"
+                        IsPassword="True"
+                        Keyboard="Text"
+                        ReturnType="Done"
+                        />
                     <Button
                 Text="Login"
                 TextColor="#A1A1A1"
