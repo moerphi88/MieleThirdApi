@@ -49,14 +49,15 @@ namespace MieleThirdApi.ViewModel
                 {
                     _itemSelected = value;
                     OnPropertyChanged();
+
                     if(value != null)
                     {
                         
-                        //An dieser Stelle, könnte ich auch die Funktion aufrufen
-                        // Anscheinend funktioniert die Parameterübertragung nur, wenn man ein COmmand bindet und dann per CommandParameter einen Parameter übergibt. Um es im Code zu lösen habe ich dazu keine Lösung gefunden
-                        System.Diagnostics.Debug.WriteLine($"ItemSelected OnPropertyChanged {App.watch.ElapsedMilliseconds} ms");
-                        _fabNr = ItemSelected.ToString();
-                        NavigateCommand.Execute(ItemSelected);
+                    //    //An dieser Stelle, könnte ich auch die Funktion aufrufen
+                    //    // Anscheinend funktioniert die Parameterübertragung nur, wenn man ein COmmand bindet und dann per CommandParameter einen Parameter übergibt. Um es im Code zu lösen habe ich dazu keine Lösung gefunden
+                    //    //System.Diagnostics.Debug.WriteLine($"ItemSelected OnPropertyChanged {App.watch.ElapsedMilliseconds} ms");
+                    //    //_fabNr = ItemSelected.ToString();
+                    //    //NavigateCommand.Execute(ItemSelected);
 
                         ItemSelected = null; // Ich darf es nicht wieder zurücksetzen, wenn ich dieses Element übergebe, aber ich könnte hier eine Kopie anlegen oder aber gleich das wichtigste herusfiltern und übertragen?! Die FabNr, die ich zum pollen brauche
                     }
