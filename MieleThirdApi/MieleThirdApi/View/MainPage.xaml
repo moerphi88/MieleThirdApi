@@ -15,8 +15,7 @@
                   HorizontalOptions="Center"
                   VerticalOptions="CenterAndExpand"
                   HasUnevenRows="true"
-                  SelectedItem="{Binding ItemSelected, Mode=TwoWay}"
-                  ItemSelected="ListView_ItemSelected">
+                  SelectedItem="{Binding ItemSelected, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

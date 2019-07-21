@@ -37,13 +37,5 @@ namespace MieleThirdApi.View
                 BindingContext = new MainPageViewModel(this.Navigation);
             }
         }
-
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            if(e.SelectedItem != null)
-            {
-                Navigation.PushAsync(new DetailPage("fabNr"));
-            }
-        }
     }
 }

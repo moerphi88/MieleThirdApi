@@ -22,8 +22,8 @@ namespace MieleThirdApi.ViewModel
 
             BackNavigationCommand =  new Command(async () => await NavigateBack());
             
-            System.Diagnostics.Debug.WriteLine($"{nameof(DetailPageViewModel)} Konstruktor fertig nach {App.watch.ElapsedMilliseconds} ms");
-            System.Diagnostics.Debug.WriteLine($"{nameof(DetailPageViewModel)} No. {count}");
+            //System.Diagnostics.Debug.WriteLine($"{nameof(DetailPageViewModel)} Konstruktor fertig nach {App.watch.ElapsedMilliseconds} ms");
+            //System.Diagnostics.Debug.WriteLine($"{nameof(DetailPageViewModel)} No. {count}");
             count++;
 
             //waitAndLogout();
