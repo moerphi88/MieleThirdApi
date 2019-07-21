@@ -41,9 +41,9 @@ namespace MieleThirdApi.View
         }
 
         protected override void OnAppearing()
-        {
-            vm.GetDeviceList();
+        {            
             base.OnAppearing();
+            vm.GetDeviceList();
         }
     }
 }

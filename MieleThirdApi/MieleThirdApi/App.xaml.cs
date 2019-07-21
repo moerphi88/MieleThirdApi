@@ -15,6 +15,7 @@ namespace MieleThirdApi
         public App()
         {
             watch.Start();
+            //System.Diagnostics.Debug.WriteLine($"Zeitmessung {App.watch.ElapsedMilliseconds} ms");
             InitializeComponent();
 
             LoginManager = LoginManager ?? new LoginMockManager();
@@ -23,8 +24,7 @@ namespace MieleThirdApi
             MainPage = navBar;
             navBar.BarBackgroundColor = Color.FromHex("#1F2328");
             navBar.BarTextColor = Color.FromHex("#a1a1a1");
-
-
+            
             if (!LoginManager.IsLoggedIn())
             {
                 MainPage.Navigation.PushModalAsync(new LoginView());

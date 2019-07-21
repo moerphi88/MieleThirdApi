@@ -14,10 +14,10 @@ namespace MieleThirdApi.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DetailPage : ContentPage
 	{
-		public DetailPage (String details)
+		public DetailPage (String fabNr)
 		{
 			InitializeComponent ();
-            BindingContext = new DetailPageViewModel(this.Navigation, details);
+            BindingContext = new DetailPageViewModel(this.Navigation, fabNr);
 		}
 
         public DetailPage()
@@ -26,7 +26,7 @@ namespace MieleThirdApi.View
             InitializeComponent();
             if (DesignMode.IsDesignModeEnabled)
             {
-                var vm = new DetailPageViewModel(this.Navigation, new DevicelistItem() { Name = "Test", EndeZeit = "Hut" });
+                var vm = new DetailPageViewModel(this.Navigation);
                 vm.IsBusy = false;
                 BindingContext = vm;
             }

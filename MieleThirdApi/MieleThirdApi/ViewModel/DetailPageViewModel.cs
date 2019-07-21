@@ -11,40 +11,39 @@ namespace MieleThirdApi.ViewModel
 {
     class DetailPageViewModel : BaseViewModel
     {
-        static int count = 0;
         public DetailViewCellModel Program { get; set; }
         public DetailPageViewModel(INavigation navigation, String fabNr) : base(navigation)
-        {
-            
+        {            
             Init(fabNr);
-
             Program = new DetailViewCellModel();
-
             BackNavigationCommand =  new Command(async () => await NavigateBack());
-            
-            //System.Diagnostics.Debug.WriteLine($"{nameof(DetailPageViewModel)} Konstruktor fertig nach {App.watch.ElapsedMilliseconds} ms");
-            //System.Diagnostics.Debug.WriteLine($"{nameof(DetailPageViewModel)} No. {count}");
-            count++;
-
-            //waitAndLogout();
-
+            Title = "Waschmaschine";
         }
 
-        //async Task waitAndLogout()
-        //{
-        //    await Task.Delay(3000);
-        //    await App.LoginManager.Logout();
-        //}
-
-        ~DetailPageViewModel()
+        public DetailPageViewModel(INavigation navigation) : base(navigation)
         {
-            count--;
-            System.Diagnostics.Debug.WriteLine($"{nameof(DetailPageViewModel)} Destruktor No. {count}");
+            Title = "Design";
+            Program = new DetailViewCellModel()
+            {
+                KeyText = "Design",
+                ValueText = "Design",
+                ImageSource = "ic_program_generic_default.png",
+                IsEditable = true
+            };
         }
 
-        public DetailPageViewModel(INavigation navigation, DevicelistItem d) : base(navigation)
+        private string _title;
+        public string Title
         {
-            Details = d;
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                _title = value;
+                OnPropertyChanged();
+            }
         }
 
         async Task NavigateBack()
