@@ -13,7 +13,8 @@ namespace MieleThirdApi.Data
     {
         public event EventHandler LoggedOut;
         private Token _token;
-        static string LoginURL = "https://api.mcs3.miele.com/thirdparty/token/?client_id=a19cbe63-3d3b-4581-a493-7f9a7f44e0ec&client_secret=vn8i8ndb5r9su2a9wcos1awz83sir4zu&vg=de-DE&grant_type=password&username=math26%40miele.de&password=miele.math26";
+        //static string LoginURL = "https://api.mcs3.miele.com/thirdparty/token/?client_id=a19cbe63-3d3b-4581-a493-7f9a7f44e0ec&client_secret=vn8i8ndb5r9su2a9wcos1awz83sir4zu&vg=de-DE&grant_type=password&username=math26%40miele.de&password=miele.math26";
+        static string LoginURL = "https://api.mcs3.miele.com/thirdparty/token/?client_id=a19cbe63-3d3b-4581-a493-7f9a7f44e0ec&client_secret=vn8i8ndb5r9su2a9wcos1awz83sir4zu&vg=de-DE&grant_type=password&username={0}&password={1}";
 
         public LoginManager()
         {
@@ -36,7 +37,7 @@ namespace MieleThirdApi.Data
             _client.MaxResponseContentBufferSize = 256000;
             //_client.DefaultRequestHeaders.Add("Accept-Language", "de-de");
 
-            var uri = new Uri(string.Format(LoginURL, string.Empty));
+            var uri = new Uri(string.Format(LoginURL, credential.User, credential.Password));
             var returnValue = false;
 
             try
