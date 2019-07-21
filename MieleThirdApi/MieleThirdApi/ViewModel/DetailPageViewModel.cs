@@ -11,22 +11,38 @@ namespace MieleThirdApi.ViewModel
 {
     class DetailPageViewModel : BaseViewModel
     {
-        Stopwatch watch = new Stopwatch();
+        static int count = 0;
         public DetailViewCellModel Program { get; set; }
-        public DetailPageViewModel(INavigation navigation, String fabNr) : base(navigation, null)
+        public DetailPageViewModel(INavigation navigation, String fabNr) : base(navigation)
         {
-            watch.Start();
+            
             Init(fabNr);
 
             Program = new DetailViewCellModel();
 
             BackNavigationCommand =  new Command(async () => await NavigateBack());
             
-            System.Diagnostics.Debug.WriteLine($"Konstruktor fertig nach {watch.ElapsedMilliseconds} ms");
+            //System.Diagnostics.Debug.WriteLine($"{nameof(DetailPageViewModel)} Konstruktor fertig nach {App.watch.ElapsedMilliseconds} ms");
+            //System.Diagnostics.Debug.WriteLine($"{nameof(DetailPageViewModel)} No. {count}");
+            count++;
+
+            //waitAndLogout();
 
         }
 
-        public DetailPageViewModel(INavigation navigation, DevicelistItem d) : base(navigation, null)
+        //async Task waitAndLogout()
+        //{
+        //    await Task.Delay(3000);
+        //    await App.LoginManager.Logout();
+        //}
+
+        ~DetailPageViewModel()
+        {
+            count--;
+            System.Diagnostics.Debug.WriteLine($"{nameof(DetailPageViewModel)} Destruktor No. {count}");
+        }
+
+        public DetailPageViewModel(INavigation navigation, DevicelistItem d) : base(navigation)
         {
             Details = d;
         }
@@ -50,8 +66,7 @@ namespace MieleThirdApi.ViewModel
             Program.IsEditable = true;
 
             IsBusy = false;
-            watch.Stop();
-            System.Diagnostics.Debug.WriteLine($"Init fertig nach {watch.ElapsedMilliseconds} ms");
+            System.Diagnostics.Debug.WriteLine($"Init fertig nach {App.watch.ElapsedMilliseconds} ms");
         }
 
         private DevicelistItem _details;
@@ -70,12 +85,7 @@ namespace MieleThirdApi.ViewModel
 
         //private bool _pollingIsActive = true;
 
-        private bool _isBusy = false;
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set { _isBusy = value; OnPropertyChanged(); }
-        }
+
 
         // https://xamarinhelp.com/xamarin-forms-timer/
         //void StartPolling()

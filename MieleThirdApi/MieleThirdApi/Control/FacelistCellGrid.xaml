@@ -68,7 +68,7 @@
                     HeightRequest="24"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    Source="ic_basic_navigate_forward_active_24pt"
+                    Source="ic_basic_navigate_forward_active"
                     Margin="16,21,16,21"
                     />
 

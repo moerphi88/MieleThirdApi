@@ -13,21 +13,38 @@ namespace MieleThirdApi.ViewModel
     class LoginViewModel : BaseViewModel
     {
         private Credential _credential;
-        
+        private ILoginManager _loginManager;
 
         public Credential Credential
         {
             get { return _credential; }
             set { _credential = value; OnPropertyChanged(); }
         }
-        public LoginViewModel(INavigation navigation, ILoginManager loginManager) : base(navigation, loginManager)
+        public LoginViewModel(INavigation navigation) : base(navigation)
         {
-            LoginCommand = new Command(async () => await LoginAsync());
+            _loginManager = App.LoginManager;
+            Credential = new Credential()
+            {
+                User = "Hund",
+                Password = "Katze"
+            };
+
+            LoginCommand = new Command(async () => await LoginAsyncCommand());
         }
 
-        async Task LoginAsync()
+        async Task LoginAsyncCommand()
         {
-            await _navigation.PushModalAsync(new MainPage());
+            IsBusy = true;
+            var success = await _loginManager.LoginAsync(Credential);
+            IsBusy = false;
+            if (success)
+            {                
+                await _navigation.PopModalAsync();
+            }
+            else
+            {                
+                await App.Current.MainPage.DisplayAlert("Halt Stop!", "Der Login war nicht erfolgreich", "Ok");
+            }
         }
 
         public ICommand LoginCommand { get; set; }

@@ -12,25 +12,22 @@ namespace MieleThirdApi.ViewModel
 {
     class MainPageViewModel : BaseViewModel
     {
-        public MainPageViewModel(INavigation navigation) : base(navigation, null)
+        
+        public MainPageViewModel(INavigation navigation) : base(navigation)
         {
             //StartPolling();
             //GetDeviceList();
             UpdateCommand = new Command(async () => await GetDeviceList());
             NavigateCommand = new Command(async () => await NavigateToDetailPageAsync());
+
+            //Prepare a DetailPage, so that I can navigate to it afterwards
+            //detailPage = new DetailPage(_fabNr);
+            //System.Diagnostics.Debug.WriteLine($"{nameof(MainPageViewModel)} Konstruktor fertig nach {App.watch.ElapsedMilliseconds} ms");
         }       
 
         private bool _pollingIsActive = true;
         private string _fabNr = "12345678";
-
-        private bool _isBusy = false;
-        public bool IsBusy
-        {
-            get { return _isBusy; }
-            set { _isBusy = value; OnPropertyChanged(); }
-        }
-
-        
+        private DetailPage detailPage;
 
         private object _itemSelected;
         public object ItemSelected
@@ -45,14 +42,16 @@ namespace MieleThirdApi.ViewModel
                 {
                     _itemSelected = value;
                     OnPropertyChanged();
+
                     if(value != null)
                     {
-                        //An dieser Stelle, könnte ich auch die Funktion aufrufen
-                        // Anscheinend funktioniert die Parameterübertragung nur, wenn man ein COmmand bindet und dann per CommandParameter einen Parameter übergibt. Um es im Code zu lösen habe ich dazu keine Lösung gefunden
 
+                        //An dieser Stelle, könnte ich auch die Funktion aufrufen
+                        //Anscheinend funktioniert die Parameterübertragung nur, wenn man ein COmmand bindet und dann per CommandParameter einen Parameter übergibt. Um es im Code zu lösen habe ich dazu keine Lösung gefunden
+                        //System.Diagnostics.Debug.WriteLine($"ItemSelected OnPropertyChanged {App.watch.ElapsedMilliseconds} ms");
                         _fabNr = ItemSelected.ToString();
                         NavigateCommand.Execute(ItemSelected);
-                        
+
                         ItemSelected = null; // Ich darf es nicht wieder zurücksetzen, wenn ich dieses Element übergebe, aber ich könnte hier eine Kopie anlegen oder aber gleich das wichtigste herusfiltern und übertragen?! Die FabNr, die ich zum pollen brauche
                     }
                 }
@@ -92,8 +91,15 @@ namespace MieleThirdApi.ViewModel
 
         async Task NavigateToDetailPageAsync()
         {
+            IsBusy = true;
+            //System.Diagnostics.Debug.WriteLine($"NavigateToDetailPageAsync is called {App.watch.ElapsedMilliseconds} ms");
             _pollingIsActive = false;
-            await _navigation.PushAsync(new DetailPage(_fabNr));
+            // Fake loading / wait to overrule the bad loading/behavior of the list view selection and detail Page loading
+            var detailPage = new DetailPage(_fabNr);
+            await Task.Delay(700);
+            await _navigation.PushAsync(detailPage);
+            //System.Diagnostics.Debug.WriteLine($"PushAsync for DetailPage done at  {App.watch.ElapsedMilliseconds} ms");
+            IsBusy = false;
         }
 
         public ICommand UpdateCommand { get; set; }
