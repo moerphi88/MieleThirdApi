@@ -97,16 +97,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\ic_basic_navigate_forward_active_24pt.imageset\Contents.json">
+    <ImageAsset Include="Assets.xcassets\ic_basic_navigate_forward_active.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\ic_basic_navigate_forward_active_24pt.imageset\ic_basic_navigate_forward_active_24pt_1x1.png">
+    <ImageAsset Include="Assets.xcassets\ic_basic_navigate_forward_active.imageset\ic_basic_navigate_forward_active_24pt_1x1.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\ic_basic_navigate_forward_active_24pt.imageset\ic_basic_navigate_forward_active_24pt_2x1.png">
+    <ImageAsset Include="Assets.xcassets\ic_basic_navigate_forward_active.imageset\ic_basic_navigate_forward_active_24pt_2x1.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\ic_basic_navigate_forward_active_24pt.imageset\ic_basic_navigate_forward_active_24pt_3x1.png">
+    <ImageAsset Include="Assets.xcassets\ic_basic_navigate_forward_active.imageset\ic_basic_navigate_forward_active_24pt_3x1.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\ic_program_generic_default.imageset\Contents.json">
