@@ -23,7 +23,11 @@ namespace MieleThirdApi.ViewModel
         public LoginViewModel(INavigation navigation) : base(navigation)
         {
             _loginManager = App.LoginManager;
-            Credential = new Credential();
+            Credential = new Credential()
+            {
+                User = "Hund",
+                Password = "Katze"
+            };
 
             LoginCommand = new Command(async () => await LoginAsyncCommand());
         }

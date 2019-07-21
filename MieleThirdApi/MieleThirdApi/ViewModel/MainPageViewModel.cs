@@ -12,16 +12,22 @@ namespace MieleThirdApi.ViewModel
 {
     class MainPageViewModel : BaseViewModel
     {
+        
         public MainPageViewModel(INavigation navigation) : base(navigation)
         {
             //StartPolling();
             GetDeviceList();
             UpdateCommand = new Command(async () => await GetDeviceList());
             NavigateCommand = new Command(async () => await NavigateToDetailPageAsync());
+
+            //Prepare a DetailPage, so that I can navigate to it afterwards
+            //detailPage = new DetailPage(_fabNr);
+            System.Diagnostics.Debug.WriteLine($"{nameof(MainPageViewModel)} Konstruktor fertig nach {App.watch.ElapsedMilliseconds} ms");
         }       
 
         private bool _pollingIsActive = true;
         private string _fabNr = "12345678";
+        private DetailPage detailPage;
 
         private bool _isBusy = false;
         public bool IsBusy
@@ -45,12 +51,13 @@ namespace MieleThirdApi.ViewModel
                     OnPropertyChanged();
                     if(value != null)
                     {
+                        
                         //An dieser Stelle, könnte ich auch die Funktion aufrufen
                         // Anscheinend funktioniert die Parameterübertragung nur, wenn man ein COmmand bindet und dann per CommandParameter einen Parameter übergibt. Um es im Code zu lösen habe ich dazu keine Lösung gefunden
-
+                        System.Diagnostics.Debug.WriteLine($"ItemSelected OnPropertyChanged {App.watch.ElapsedMilliseconds} ms");
                         _fabNr = ItemSelected.ToString();
                         NavigateCommand.Execute(ItemSelected);
-                        
+
                         ItemSelected = null; // Ich darf es nicht wieder zurücksetzen, wenn ich dieses Element übergebe, aber ich könnte hier eine Kopie anlegen oder aber gleich das wichtigste herusfiltern und übertragen?! Die FabNr, die ich zum pollen brauche
                     }
                 }
@@ -90,8 +97,10 @@ namespace MieleThirdApi.ViewModel
 
         async Task NavigateToDetailPageAsync()
         {
+            System.Diagnostics.Debug.WriteLine($"NavigateToDetailPageAsync is called {App.watch.ElapsedMilliseconds} ms");
             _pollingIsActive = false;
             await _navigation.PushAsync(new DetailPage(_fabNr));
+            System.Diagnostics.Debug.WriteLine($"PushAsync for DetailPage done at  {App.watch.ElapsedMilliseconds} ms");
         }
 
         public ICommand UpdateCommand { get; set; }

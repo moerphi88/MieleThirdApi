@@ -1,6 +1,7 @@
 ﻿using MieleThirdApi.Data;
 using MieleThirdApi.View;
 using System;
+using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,8 +11,10 @@ namespace MieleThirdApi
     public partial class App : Application
     {
         public static ILoginManager LoginManager { get; private set; }
+        public static Stopwatch watch = new Stopwatch();
         public App()
         {
+            watch.Start();
             InitializeComponent();
 
             LoginManager = LoginManager ?? new LoginMockManager();
@@ -31,6 +34,7 @@ namespace MieleThirdApi
         protected override void OnSleep()
         {
             // Handle when your app sleeps
+            watch.Stop();
         }
 
         protected override void OnResume()

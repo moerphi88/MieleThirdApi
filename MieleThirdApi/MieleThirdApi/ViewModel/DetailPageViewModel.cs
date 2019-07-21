@@ -12,18 +12,17 @@ namespace MieleThirdApi.ViewModel
     class DetailPageViewModel : BaseViewModel
     {
         static int count = 0;
-        Stopwatch watch = new Stopwatch();
         public DetailViewCellModel Program { get; set; }
         public DetailPageViewModel(INavigation navigation, String fabNr) : base(navigation)
         {
-            watch.Start();
+            
             Init(fabNr);
 
             Program = new DetailViewCellModel();
 
             BackNavigationCommand =  new Command(async () => await NavigateBack());
             
-            System.Diagnostics.Debug.WriteLine($"{nameof(DetailPageViewModel)} Konstruktor fertig nach {watch.ElapsedMilliseconds} ms");
+            System.Diagnostics.Debug.WriteLine($"{nameof(DetailPageViewModel)} Konstruktor fertig nach {App.watch.ElapsedMilliseconds} ms");
             System.Diagnostics.Debug.WriteLine($"{nameof(DetailPageViewModel)} No. {count}");
             count++;
 
@@ -67,8 +66,7 @@ namespace MieleThirdApi.ViewModel
             Program.IsEditable = true;
 
             IsBusy = false;
-            watch.Stop();
-            System.Diagnostics.Debug.WriteLine($"Init fertig nach {watch.ElapsedMilliseconds} ms");
+            System.Diagnostics.Debug.WriteLine($"Init fertig nach {App.watch.ElapsedMilliseconds} ms");
         }
 
         private DevicelistItem _details;
