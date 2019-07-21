@@ -10,21 +10,39 @@ namespace MieleThirdApi.Data
     {
         private IRestApi _restApi;
 
+        //For Chaching puposes
+        private Appliance _cachedAppliance; //Todo this must be a dictionary<fabNr, Appliance>
+        private List<Appliance> _cachedListOfAppliance;
+
         public GeraeteManager(IRestApi restApi)
         {
             _restApi = restApi;
         }
 
-        public Task<Appliance> GetDeviceAsync(string fabNr)
-        {
-            return _restApi.GetApplianceAsync(fabNr);
+        public async Task<Appliance> GetDeviceAsync(string fabNr)
+        {   
+            var appliance = await _restApi.GetApplianceAsync(fabNr);
+            if(appliance != null)
+            {
+                return _cachedAppliance = appliance;
+            } else
+            {
+                //TODO: In case the first call misses, I need to send an empty Appliance. 
+                return _cachedAppliance ?? new Appliance();
+            }
         }
 
         public async Task<List<DevicelistItem>> GetDevicelistItemsAsync()
         {
             var listOfAppliances = await _restApi.GetAppliancesListAsync();
-            //Here the magic model conversion must happen
-            return CreateDevicelistItemListFromAppliances(listOfAppliances);
+            if(listOfAppliances != null)
+            {
+                _cachedListOfAppliance = listOfAppliances;
+                return CreateDevicelistItemListFromAppliances(listOfAppliances);
+            } else
+            {                
+                return CreateDevicelistItemListFromAppliances(_cachedListOfAppliance ?? new List<Appliance>());
+            }            
         }
 
         private List<DevicelistItem> CreateDevicelistItemListFromAppliances(List<Appliance> listOfAppliances)

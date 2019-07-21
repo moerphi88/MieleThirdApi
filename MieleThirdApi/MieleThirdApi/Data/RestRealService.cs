@@ -17,6 +17,7 @@ namespace MieleThirdApi.Data
 
         //curl -X GET "https://api.mcs3.miele.com/v1/devices/" -H  "accept: application/json; charset=utf-8"
         static string DevicesUrl = "https://api.mcs3.miele.com/v1/devices/?language=de";
+        static string CertainDeviceUrl = "https://api.mcs3.miele.com/v1/devices/000160564385/?language=de";
 
         public RestRealService()
         {
@@ -35,21 +36,47 @@ namespace MieleThirdApi.Data
             _client.MaxResponseContentBufferSize = 256000;
             //_client.DefaultRequestHeaders.Add("Accept-Language", "de-de");
 
+            _loginManager = App.LoginManager;
 
         }
 
 
         public async Task<Appliance> GetApplianceAsync(string fabNr)
         {
+            var uri = new Uri(string.Format(CertainDeviceUrl, string.Empty));
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "DE_4ffe8e9614659ee918d54cc99cb356cb");
+            Appliance appliance = null;
+            try
+            {
+                var response = await _client.GetAsync(uri);
+                
+                if (response.IsSuccessStatusCode)
+                {
+                    var body = await response.Content.ReadAsStringAsync();
 
-            throw new NotImplementedException();
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        MissingMemberHandling = MissingMemberHandling.Ignore
+                    };
+
+                    appliance = JsonConvert.DeserializeObject<Appliance>(body, settings);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(@"				ERROR {0}", ex.Message);
+            }
+
+            return appliance;
         }
 
         public async Task<List<Appliance>> GetAppliancesListAsync()
         {
             var uri = new Uri(string.Format(DevicesUrl, string.Empty));
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "DE_4ffe8e9614659ee918d54cc99cb356cb");
-            var list = new List<Appliance>();
+            List<Appliance> list = null;
             try
             {
                 var response = await _client.GetAsync(uri);
@@ -65,9 +92,9 @@ namespace MieleThirdApi.Data
 
                     var dict = JsonConvert.DeserializeObject<Dictionary<string, Appliance>>(body, settings);
 
+                    list = new List<Appliance>();
 
-
-                    foreach(KeyValuePair<string,Appliance> a in dict){
+                    foreach (KeyValuePair<string,Appliance> a in dict){
                         list.Add(a.Value);
                     }
                 }

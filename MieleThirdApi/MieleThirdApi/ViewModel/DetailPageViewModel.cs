@@ -56,14 +56,22 @@ namespace MieleThirdApi.ViewModel
         async void Init(string fabNr)
         {
             IsBusy = true;
-            var device = await _geraeteManager.GetDeviceAsync(fabNr);
+            var appliance = await _geraeteManager.GetDeviceAsync(fabNr);
             //Details = device as Model.Device;
             Details = new DevicelistItem { Name = "Hu", EndeZeit = "Fu" };
-            
-            Program.KeyText = device.State.programType.key_localized.ToUpper();
-            Program.ValueText = String.IsNullOrEmpty(device.State.programType.value_localized) ? "QuickPowerWash" : device.State.programType.value_localized;
-            Program.ImageSource = "ic_program_generic_default.png";
-            Program.IsEditable = true;
+            if(appliance.State != null)
+            {
+                Program.KeyText = appliance.State.programType.key_localized.ToUpper();
+                Program.ValueText = String.IsNullOrEmpty(appliance.State.programType.value_localized) ? "QuickPowerWash" : appliance.State.programType.value_localized;
+                Program.ImageSource = "ic_program_generic_default.png";
+                Program.IsEditable = true;
+            } else
+            {
+                Program.KeyText = "Error nothing loaded!";
+                Program.ValueText = "Error nothing loaded!";
+                Program.ImageSource = "ic_program_generic_default.png";
+                Program.IsEditable = true;
+            }
 
             IsBusy = false;
             System.Diagnostics.Debug.WriteLine($"Init fertig nach {App.watch.ElapsedMilliseconds} ms");
