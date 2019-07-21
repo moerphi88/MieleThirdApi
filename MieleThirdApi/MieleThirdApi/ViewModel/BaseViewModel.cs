@@ -22,7 +22,7 @@ namespace MieleThirdApi.ViewModel
 
             //Hier kann später die Compiler MOCK Abfrage rein
             //_restApi = new RestMockService();
-            _restApi = new RestApiService();
+            _restApi = new RestRealService();//new RestApiService();
             
             //Wenn ich das hier erstelle, dann wird ja für jeden View, der von BaseVM erbt ein neuer Gerätemanager angelegt. Nicht gut
             _geraeteManager = new GeraeteManager(_restApi);

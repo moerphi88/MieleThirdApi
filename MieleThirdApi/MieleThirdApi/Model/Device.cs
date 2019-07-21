@@ -173,7 +173,7 @@ namespace MieleThirdApi.Model
     public class TargetTemperature
     {
         public int value_raw { get; set; }
-        public object value_localized { get; set; }
+        public string value_localized { get; set; }
         public string unit { get; set; }
     }
 

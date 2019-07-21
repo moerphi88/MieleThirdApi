@@ -15,7 +15,7 @@ namespace MieleThirdApi.Data
             return new Appliance();
         }
 
-        public async Task<List<Appliance>> GetApplincesListAsync()
+        public async Task<List<Appliance>> GetAppliancesListAsync()
         {
             var appliances = new List<Appliance>();
             await Task.Delay(3000);

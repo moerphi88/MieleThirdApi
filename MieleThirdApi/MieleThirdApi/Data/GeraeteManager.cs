@@ -22,7 +22,7 @@ namespace MieleThirdApi.Data
 
         public async Task<List<DevicelistItem>> GetDevicelistItemsAsync()
         {
-            var listOfAppliances = await _restApi.GetApplincesListAsync();
+            var listOfAppliances = await _restApi.GetAppliancesListAsync();
             //Here the magic model conversion must happen
             return CreateDevicelistItemListFromAppliances(listOfAppliances);
         }

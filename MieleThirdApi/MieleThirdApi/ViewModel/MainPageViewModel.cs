@@ -15,7 +15,7 @@ namespace MieleThirdApi.ViewModel
         public MainPageViewModel(INavigation navigation) : base(navigation, null)
         {
             //StartPolling();
-            GetDeviceList();
+            //GetDeviceList();
             UpdateCommand = new Command(async () => await GetDeviceList());
             NavigateCommand = new Command(async () => await NavigateToDetailPageAsync());
         }       
@@ -99,7 +99,7 @@ namespace MieleThirdApi.ViewModel
         public ICommand UpdateCommand { get; set; }
         public ICommand NavigateCommand { get; set; }
 
-        async Task GetDeviceList()
+        public async Task GetDeviceList()
         {
             IsBusy = true;
             var devicelistItems = await _geraeteManager.GetDevicelistItemsAsync();

@@ -8,7 +8,7 @@ namespace MieleThirdApi.Data
 {
     public interface IRestApi
     {
-        Task<List<Appliance>> GetApplincesListAsync();
+        Task<List<Appliance>> GetAppliancesListAsync();
         Task<Appliance> GetApplianceAsync(string fabNr);
     }
 }

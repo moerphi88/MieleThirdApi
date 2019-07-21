@@ -43,7 +43,7 @@ namespace MieleThirdApi.Data
             throw new NotImplementedException();
         }
 
-        public async Task<List<Appliance>> GetApplincesListAsync()
+        public async Task<List<Appliance>> GetAppliancesListAsync()
         {
             // RestUrl = http://developer.xamarin.com:8081/api/todoitems
             var uri = new Uri(string.Format(DevicesUrl, string.Empty));

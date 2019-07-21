@@ -10,7 +10,7 @@
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
         <ListView ItemsSource="{Binding DeviceList}"
-                  IsPullToRefreshEnabled="false"            
+                  IsPullToRefreshEnabled="True"            
                   RefreshCommand="{Binding UpdateCommand}"             
                   HorizontalOptions="Center"
                   VerticalOptions="CenterAndExpand"

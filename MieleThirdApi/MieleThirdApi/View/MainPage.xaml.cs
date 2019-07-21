@@ -12,6 +12,7 @@ namespace MieleThirdApi.View
 {
     public partial class MainPage : ContentPage
     {
+        private MainPageViewModel vm;
         public MainPage()
         {
             InitializeComponent();
@@ -19,7 +20,7 @@ namespace MieleThirdApi.View
            // https://montemagno.com/xamarinforms-xaml-previewer-design-time-data/
             if (DesignMode.IsDesignModeEnabled)
             {
-                var vm = new MainPageViewModel(this.Navigation);
+                vm = new MainPageViewModel(this.Navigation);
                 vm.IsBusy = true;
                 vm.DeviceList = new ObservableCollection<DevicelistItem>() { new DevicelistItem()
                 {   Name = "Lorem ipsum bla bla bla",
@@ -34,8 +35,15 @@ namespace MieleThirdApi.View
 
             if (!DesignMode.IsDesignModeEnabled)
             {
-                BindingContext = new MainPageViewModel(this.Navigation);
+                vm = new MainPageViewModel(this.Navigation);
+                BindingContext = vm;
             }
+        }
+
+        protected override void OnAppearing()
+        {
+            vm.GetDeviceList();
+            base.OnAppearing();
         }
     }
 }
