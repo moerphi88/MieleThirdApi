@@ -56,5 +56,10 @@ namespace MieleThirdApi.Data
             _token = new Token();
             return true;
         }
+
+        public string GetAccessToken()
+        {
+            return _token?.AccessToken;
+        }
     }
 }

@@ -44,7 +44,8 @@ namespace MieleThirdApi.Data
         public async Task<Appliance> GetApplianceAsync(string fabNr)
         {
             var uri = new Uri(string.Format(CertainDeviceUrl, fabNr));
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "DE_4ffe8e9614659ee918d54cc99cb356cb");
+            //_client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "DE_4ffe8e9614659ee918d54cc99cb356cb");
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _loginManager.GetAccessToken());
             Appliance appliance = null;
             try
             {
@@ -75,7 +76,7 @@ namespace MieleThirdApi.Data
         public async Task<List<Appliance>> GetAppliancesListAsync()
         {
             var uri = new Uri(string.Format(DevicesUrl, string.Empty));
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "DE_4ffe8e9614659ee918d54cc99cb356cb");
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _loginManager.GetAccessToken());
             List<Appliance> list = null;
             try
             {

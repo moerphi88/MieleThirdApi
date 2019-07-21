@@ -8,6 +8,7 @@ namespace MieleThirdApi.Data
 {
     public interface ILoginManager
     {
+        string GetAccessToken();
         bool IsLoggedIn();
         Task<bool> LoginAsync(Credential credential);
         Task<bool> Logout();
