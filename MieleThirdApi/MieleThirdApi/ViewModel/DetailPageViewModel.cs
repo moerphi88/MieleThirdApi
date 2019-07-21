@@ -12,11 +12,14 @@ namespace MieleThirdApi.ViewModel
     class DetailPageViewModel : BaseViewModel
     {
         public DetailViewCellModel Program { get; set; }
+        public DetailViewCellModel Temperature { get; set; }
+        public DetailViewCellModel SpinSpeed { get; set; }
         public DetailPageViewModel(INavigation navigation, String fabNr) : base(navigation)
         {            
             Init(fabNr);
             Program = new DetailViewCellModel();
-            BackNavigationCommand =  new Command(async () => await NavigateBack());
+            Temperature = new DetailViewCellModel();
+            SpinSpeed = new DetailViewCellModel();
             Title = "Waschmaschine";
         }
 
@@ -46,18 +49,11 @@ namespace MieleThirdApi.ViewModel
             }
         }
 
-        async Task NavigateBack()
-        {
-            System.Diagnostics.Debug.WriteLine("Button Klick");
-            await _navigation.PopModalAsync();
-        }
-
         async void Init(string fabNr)
         {
             IsBusy = true;
             var appliance = await _geraeteManager.GetDeviceAsync(fabNr);
-            //Details = device as Model.Device;
-            Details = new DevicelistItem { Name = "Hu", EndeZeit = "Fu" };
+
             if(appliance.State != null)
             {
                 Program.KeyText = appliance.State.programType.key_localized.ToUpper();
@@ -76,23 +72,7 @@ namespace MieleThirdApi.ViewModel
             System.Diagnostics.Debug.WriteLine($"Init fertig nach {App.watch.ElapsedMilliseconds} ms");
         }
 
-        private DevicelistItem _details;
-        public DevicelistItem Details
-        {
-            get
-            {
-                return _details;
-            }
-            set
-            {
-                _details = value;
-                OnPropertyChanged();
-            }
-        }
-
         //private bool _pollingIsActive = true;
-
-
 
         // https://xamarinhelp.com/xamarin-forms-timer/
         //void StartPolling()
@@ -106,9 +86,7 @@ namespace MieleThirdApi.ViewModel
         //        return _pollingIsActive; // True = Repeat again, False = Stop the timer
         //    });
         //}
-
-        public ICommand BackNavigationCommand { get; }
-
+        
         //async Task GetDeviceList()
         //{
         //    IsBusy = true;

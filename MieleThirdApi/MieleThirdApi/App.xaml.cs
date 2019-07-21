@@ -18,7 +18,8 @@ namespace MieleThirdApi
             //System.Diagnostics.Debug.WriteLine($"Zeitmessung {App.watch.ElapsedMilliseconds} ms");
             InitializeComponent();
 
-            LoginManager = LoginManager ?? new LoginMockManager();
+            //LoginManager = LoginManager ?? new LoginMockManager();
+            LoginManager = LoginManager ?? new LoginManager();
 
             var navBar = new NavigationPage(new MainPage());
             MainPage = navBar;
