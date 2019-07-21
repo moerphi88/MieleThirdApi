@@ -29,7 +29,7 @@
                 <Label
                 Text="MAIN PROGRAMM PARAMETER"
                 Margin="16,36,16,12"
-                TextColor="#a1a1a1"/>
+                TextColor="#a1a1a1" FontAttributes="Bold" FontSize="15" />
             
                 <custom:FaceliftCellGrid
                 IconImageSource="{Binding Program.ImageSource}"

@@ -43,14 +43,14 @@
                 Grid.Column="1"
                 Grid.ColumnSpan="2">
                 <Label              
-                    Text="Hund"
+                    Text="Test"
                     x:Name="LableText"
                     Margin="0,15,0,0"
                     FontSize="13"
                     TextColor="#A1A1A1"
                     HeightRequest="15"/>
                 <Label 
-                    Text="Katze"
+                    Text="Hunger"
                     x:Name="valueText"
                     Margin="0,2,0,13"
                     TextColor="#FFFFFF"

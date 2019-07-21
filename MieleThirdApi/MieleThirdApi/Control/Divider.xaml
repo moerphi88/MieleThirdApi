@@ -9,7 +9,7 @@
         <BoxView 
                 HeightRequest="1"
                 Margin="16,0,16,0"
-                BackgroundColor="White"                     
+                BackgroundColor="#666666"                     
                 IsVisible = "False">
             <BoxView.IsVisible>
                 <OnPlatform x:TypeArguments="x:Boolean">
