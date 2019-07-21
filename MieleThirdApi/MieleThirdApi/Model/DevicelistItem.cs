@@ -7,6 +7,7 @@ namespace MieleThirdApi.Model
 {
     public class DevicelistItem
     {
+        public string FabNr { get; private set; }
         public string IconUri { get; set; }
         public string Name { get; set; }
         public string Status { get; set; }
@@ -22,6 +23,7 @@ namespace MieleThirdApi.Model
             Status = "In Betrieb";
             EndeZeit = "19:34";
             ProgressBarValue = .4;
+            FabNr = "000160564385";
         }
 
         public DevicelistItem(Appliance appliance, IDateTimeHelper dateTimeHelper = null)
@@ -34,6 +36,7 @@ namespace MieleThirdApi.Model
             Status = appliance.State.status.value_localized;
             EndeZeit = GetEndeZeit(appliance.State.remainingTime);
             ProgressBarValue = GetProgressBarValue(appliance.State.remainingTime, appliance.State.elapsedTime);
+            FabNr = appliance.Ident.deviceIdentLabel.fabNumber;
         }
 
         private string GetIconUri(int typeRaw)

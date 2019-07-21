@@ -17,7 +17,7 @@ namespace MieleThirdApi.Data
 
         //curl -X GET "https://api.mcs3.miele.com/v1/devices/" -H  "accept: application/json; charset=utf-8"
         static string DevicesUrl = "https://api.mcs3.miele.com/v1/devices/?language=de";
-        static string CertainDeviceUrl = "https://api.mcs3.miele.com/v1/devices/000160564385/?language=de";
+        static string CertainDeviceUrl = "https://api.mcs3.miele.com/v1/devices/{0}/?language=de"; //000160564385/?language=de
 
         public RestRealService()
         {
@@ -43,7 +43,7 @@ namespace MieleThirdApi.Data
 
         public async Task<Appliance> GetApplianceAsync(string fabNr)
         {
-            var uri = new Uri(string.Format(CertainDeviceUrl, string.Empty));
+            var uri = new Uri(string.Format(CertainDeviceUrl, fabNr));
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "DE_4ffe8e9614659ee918d54cc99cb356cb");
             Appliance appliance = null;
             try
