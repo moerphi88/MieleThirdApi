@@ -3,6 +3,224 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MieleThirdApi.App">
     <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="active">#f2ad19</Color>
+            <Color x:Key="default">#ffffff</Color>
+            <Color x:Key="font_secondary">#a1a1a1</Color>
+            <Color x:Key="font_dark">#1f2329</Color>
+            <Color x:Key="background">#1f2328</Color>
+            <Color x:Key="background_secondary">#2c2f30</Color>
+            <Color x:Key="divider_default">#666666</Color>
+            <Color x:Key="divider_bars">#303236</Color>
+            <Color x:Key="inactive">#969899</Color>
+            <Color x:Key="active_disabled">#7c6229</Color>
+            <Color x:Key="warning">#e64374</Color>
 
+
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="BorderColor" Value="Lime" />
+                <Setter Property="BorderRadius" Value="5" />
+                <Setter Property="BorderWidth" Value="5" />
+                <Setter Property="WidthRequest" Value="200" />
+                <Setter Property="TextColor" Value="Teal" />
+            </Style>
+
+
+            <!-- Text Styles -->
+            <Style TargetType="Label" x:Key="LargeDefaultLightStart" >
+                <Setter Property="FontSize" Value="26" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+                <!--<Setter Property="FontFamily">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Font" iOS="None" Android="Roboto-Light.ttf#Roboto" />
+                    </Setter.Value>
+                </Setter>-->
+            </Style>
+            <Style TargetType="Label" x:Key="LargeDefaultLightCenter" >
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="26" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="BigInactiveSemiboldLeft">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource font_secondary}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="BigInactiveMediumRight">
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource font_secondary}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="BigDefaultSemiboldLeft">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="BigInactiveMediumCenter">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource font_secondary}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="BigDefaultMediumCenter">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="BigWarningRegularLeft">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource warning}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="BigInactiveRegularLeft">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource font_secondary}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="BigDefaultRegularRight">
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="BigDefaultRegularLeft">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="MediumActiveLightCenter">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="17" />
+                <Setter Property="TextColor" Value="{StaticResource active}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="MediumInactiveBoldLeftUppercase">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="{StaticResource font_secondary}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="MediumDefaultBoldRightUppercase">
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="MediumActiveBoldCenterUppercase">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="{StaticResource active}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="MediumActiveBoldCenterDisabledUppercase">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="{StaticResource active_disabled}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="MediumDefaultSemiboldLeft">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="MediumInactiveRegularLeft">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="{StaticResource font_secondary}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="MediumInactiveRegularCenter">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="{StaticResource font_secondary}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="MediumDefaultRegularLeft">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="MediumDefaultRegularCenter">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="MediumActiveRegularLeft">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="{StaticResource active}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="MediumActiveRegularCenterDisabled">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="{StaticResource active_disabled}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="MediumActiveRegularCenter">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="{StaticResource active}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="MediumDefaultLightLeft">
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="SmallWarningRegularLeft">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource warning}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="SmallInactiveRegularRight">
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource font_secondary}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="SmallInactiveRegularLeftUppercase">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource font_secondary}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="SmallInactiveRegularLeft">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource font_secondary}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="SmallInactiveRegularCenter">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource font_secondary}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="SmallDefaultRegularRight">
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="SmallDefaultRegularLeft">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="SmallDefaultRegularCenter">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="SmallActiveRegularLeft">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource active}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="SmallDefaultLightRight">
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="SmallDefaultLightLeft">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="SmallDefaultLightCenter">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="SmallDarkLightLeft">
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource font_dark}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="SmallDarkLightCenter">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextColor" Value="{StaticResource font_dark}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="TinyInactiveRegularCenter">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="TextColor" Value="{StaticResource font_secondary}"/>
+            </Style>
+            <Style TargetType="Label" x:Key="TinyDefaultRegularCenter">
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="TextColor" Value="{StaticResource default}"/>
+            </Style>
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
