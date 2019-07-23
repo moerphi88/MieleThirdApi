@@ -31,7 +31,7 @@ namespace MieleThirdApi.Data
             var returnValue = false;
             if(!String.IsNullOrEmpty(credential?.User) && !String.IsNullOrEmpty(credential?.Password))
             {
-                if (credential.User.Equals("Hund") && credential.Password.Equals("Katze"))
+                if (credential.User.Equals("math21@miele.de") && credential.Password.Equals("miele.math21"))
                 {
                     returnValue = true;
                 }

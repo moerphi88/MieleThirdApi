@@ -3,6 +3,7 @@ using MieleThirdApi.Model;
 using MieleThirdApi.View;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -25,8 +26,8 @@ namespace MieleThirdApi.ViewModel
             _loginManager = App.LoginManager;
             Credential = new Credential()
             {
-                User = "Hund",
-                Password = "Katze"
+                User = "math21@miele.de",
+                Password = "miele.math21"
             };
 
             LoginCommand = new Command(async () => await LoginAsyncCommand());
