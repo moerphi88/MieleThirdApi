@@ -18,7 +18,7 @@ namespace MieleThirdApi
             //System.Diagnostics.Debug.WriteLine($"Zeitmessung {App.watch.ElapsedMilliseconds} ms");
             InitializeComponent();
 
-            Debug.WriteLine("Sowieso");
+            //Debug.WriteLine("Sowieso");
             LoginManager = LoginManager ?? new LoginMockManager();
             //(LoginManager = LoginManager ?? new LoginManager();
 
@@ -36,17 +36,20 @@ namespace MieleThirdApi
         protected override void OnStart()
         {
             // Handle when your app starts
+            Debug.WriteLine("OnStart");
         }
 
         protected override void OnSleep()
         {
             // Handle when your app sleeps
+            Debug.WriteLine("OnSleep");
             watch.Stop();
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
+            Debug.WriteLine("OnResume");
         }
     }
 }
