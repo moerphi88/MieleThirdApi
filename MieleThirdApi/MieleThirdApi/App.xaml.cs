@@ -21,12 +21,11 @@ namespace MieleThirdApi
             //Debug.WriteLine("Sowieso");
             LoginManager = LoginManager ?? new LoginMockManager();
             //(LoginManager = LoginManager ?? new LoginManager();
+                        
+            MainPage = new NavigationPage(new MainPage());
+            MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#1F2328"));
+            MainPage.SetValue(NavigationPage.BarTextColorProperty, Color.FromHex("#a1a1a1"));
 
-            var navBar = new NavigationPage(new MainPage());
-            MainPage = navBar;
-            navBar.BarBackgroundColor = Color.FromHex("#1F2328");
-            navBar.BarTextColor = Color.FromHex("#a1a1a1");
-            
             if (!LoginManager.IsLoggedIn())
             {
                 MainPage.Navigation.PushModalAsync(new LoginView());

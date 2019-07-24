@@ -20,6 +20,8 @@ namespace MieleThirdApi.Droid
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
+            //if (Android.OS.Build.VERSION.SdkInt >= BuildVersionCodes.Lollipop)
+            //    Window.SetStatusBarColor(Android.Graphics.Color.ParseColor("#1F2328"));
         }
     }
 }
