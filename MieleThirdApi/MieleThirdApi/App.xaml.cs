@@ -26,15 +26,20 @@ namespace MieleThirdApi
             MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#1F2328"));
             MainPage.SetValue(NavigationPage.BarTextColorProperty, Color.FromHex("#a1a1a1"));
 
-            if (!LoginManager.IsLoggedIn())
-            {
-                MainPage.Navigation.PushModalAsync(new LoginView());
-            }
+          //if ((!LoginManager.IsLoggedIn().Result))
+          //  {
+          //      MainPage.Navigation.PushModalAsync(new LoginView());
+          //  }
         }
 
-        protected override void OnStart()
+
+        protected override async void OnStart()
         {
             // Handle when your app starts
+            if ((!(await LoginManager.IsLoggedIn()))) 
+            {
+                await MainPage.Navigation.PushModalAsync(new LoginView());
+            }
             Debug.WriteLine("OnStart");
         }
 

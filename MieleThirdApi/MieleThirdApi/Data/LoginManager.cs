@@ -26,7 +26,7 @@ namespace MieleThirdApi.Data
             return _token?.AccessToken;
         }
 
-        public bool IsLoggedIn()
+        public async Task<bool> IsLoggedIn()
         {
             if (_token != null)
             {
