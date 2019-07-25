@@ -89,10 +89,18 @@ namespace MieleThirdApi.Data
         }
 
         public async Task<bool> Logout()
-        {            
+        {
             // Here goes the logout code. Delete data from device etc.
-            await Task.Delay(1000);
-            LoggedOut?.Invoke(this, new EventArgs());
+            try
+            {
+                _token = null;
+                SecureStorage.Remove(SECURE_STORAGE_OAUTH_KEY);
+                //LoggedOut?.Invoke(this, new EventArgs()); 
+                await Task.Delay(500);
+            } catch (Exception ex)
+            {
+                Debug.WriteLine($"Exception in {nameof(Logout)} : {ex.Message}");
+            }
             return true;
         }
 
