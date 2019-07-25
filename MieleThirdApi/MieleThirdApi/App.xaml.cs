@@ -49,6 +49,8 @@ namespace MieleThirdApi
             AppCenter.Start("android=6144b737-72ba-4f7a-9abe-dc75cf54ab6e;" +
                 "ios=14f0918d-41d0-46cb-84e5-cf16b985611d;",
                   typeof(Analytics), typeof(Crashes));
+
+            AppCenter.LogLevel = LogLevel.Verbose;
         }
 
         protected override void OnSleep()
