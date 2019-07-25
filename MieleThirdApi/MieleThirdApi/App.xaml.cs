@@ -4,6 +4,9 @@ using System;
 using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MieleThirdApi
@@ -37,6 +40,15 @@ namespace MieleThirdApi
         {
             // Handle when your app starts
             Debug.WriteLine("OnStart");
+
+            //AppCenter.Start("android=6144b737-72ba-4f7a-9abe-dc75cf54ab6e;" +
+            //      "uwp={Your UWP App secret here};" +
+            //      "ios={Your iOS App secret here}",
+            //      typeof(Analytics), typeof(Crashes));
+
+            AppCenter.Start("android=6144b737-72ba-4f7a-9abe-dc75cf54ab6e;" +
+                "ios=14f0918d-41d0-46cb-84e5-cf16b985611d;",
+                  typeof(Analytics), typeof(Crashes));
         }
 
         protected override void OnSleep()
