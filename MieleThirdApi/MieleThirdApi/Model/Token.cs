@@ -25,5 +25,7 @@ namespace MieleThirdApi.Model
 
         [JsonProperty("expires_in")]
         public long ExpiresIn { get; set; }
+
+        public DateTime Timestamp { get; set; }
     }
 }

@@ -44,7 +44,6 @@ namespace MieleThirdApi.ViewModel
                         //System.Diagnostics.Debug.WriteLine($"ItemSelected OnPropertyChanged {App.watch.ElapsedMilliseconds} ms");
                         _fabNr = (ItemSelected as DevicelistItem).FabNr;
 
-                        App.LoginManager.Logout();
                         NavigateCommand.Execute(ItemSelected);
 
                         ItemSelected = null; // Ich darf es nicht wieder zurücksetzen, wenn ich dieses Element übergebe, aber ich könnte hier eine Kopie anlegen oder aber gleich das wichtigste herusfiltern und übertragen?! Die FabNr, die ich zum pollen brauche
