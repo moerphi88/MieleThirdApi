@@ -44,6 +44,13 @@ namespace MieleThirdApi.View
         {            
             base.OnAppearing();
             vm.GetDeviceList();
+            //StartPolling
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            //StopPolling
         }
     }
 }

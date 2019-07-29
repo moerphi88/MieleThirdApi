@@ -7,6 +7,9 @@ using System.Windows.Input;
 using MieleThirdApi.Model;
 using MieleThirdApi.View;
 using System.Collections.Generic;
+using System.Linq;
+using System.Diagnostics;
+using Xamarin.Essentials;
 
 namespace MieleThirdApi.ViewModel
 {
@@ -14,13 +17,24 @@ namespace MieleThirdApi.ViewModel
     {        
         public MainPageViewModel(INavigation navigation) : base(navigation)
         {
-            //StartPolling();
+            _geraeteManager.StartPolling();
+
+            _geraeteManager.DeviceListUpdated += UpdateObservableCollectionDeviceList;
             //GetDeviceList();
             UpdateCommand = new Command(async () => await GetDeviceList());
             NavigateCommand = new Command(async () => await NavigateToDetailPageAsync());
-        }       
 
-        private bool _pollingIsActive = true;
+            DeviceList = new ObservableCollection<DevicelistItem>();
+        }
+
+        private void UpdateObservableCollectionDeviceList(object sender, DeviceListEventArgs e)
+        {
+            // An dieser stelle die Liste entgegennehmen und meine ObservableCOllection updaten
+            // Was ist der beste Weg? Alles austauschen oder alte weg und neue hnzufügen? Oder einzelne Parameter anüassen?
+            Debug.WriteLine($"{nameof(UpdateObservableCollectionDeviceList)} has been called from {sender.ToString()} and it has send {e.DevicelistItemList[0].Name}");
+        }
+
+        //private bool _pollingIsActive = true;
         private string _fabNr = "12345678";
         private ObservableCollection<DevicelistItem> _deviceList;
         private object _itemSelected;
@@ -60,21 +74,33 @@ namespace MieleThirdApi.ViewModel
         }
 
         // https://xamarinhelp.com/xamarin-forms-timer/
-        void StartPolling()
-        {
-            Xamarin.Forms.Device.StartTimer(TimeSpan.FromSeconds(5), () =>
-            {
-                GetDeviceList(); //Führt er das hier denn nu eigentlich auf dem MainThread aus? Oder Macht der einen Thread auf und arbeitet das ab, so wie es sollte
+        //void StartPolling()
+        //{
+        //    Xamarin.Forms.Device.StartTimer(TimeSpan.FromSeconds(3), () =>
+        //    {
+        //        try
+        //        {
+        //            Task.Run(async () =>
+        //            {
+        //                await GetDeviceList();
+        //                DeviceList.First(d => d.FabNr == "000124430017").Name += 1;
+        //            }); //Führt er das hier denn nu eigentlich auf dem MainThread aus? Oder Macht der einen Thread auf und arbeitet das ab, so wie es sollte
 
-                return _pollingIsActive; // True = Repeat again, False = Stop the timer
-            });
-        }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            Debug.WriteLine($"Exception in {nameof(StartPolling)} : {ex.Message}");
+        //        }
+        //        return true;
+        //        //return _pollingIsActive; // True = Repeat again, False = Stop the timer
+        //    });
+        //}
 
         async Task NavigateToDetailPageAsync()
         {
             IsBusy = true;
             //System.Diagnostics.Debug.WriteLine($"NavigateToDetailPageAsync is called {App.watch.ElapsedMilliseconds} ms");
-            _pollingIsActive = false;
+            //_pollingIsActive = false;
             // Fake loading / wait to overrule the bad loading/behavior of the list view selection and detail Page loading
             var detailPage = new DetailPage(_fabNr);
             await Task.Delay(700);
@@ -91,8 +117,25 @@ namespace MieleThirdApi.ViewModel
             IsBusy = true;
             var devicelistItems = await _geraeteManager.GetDevicelistItemsAsync();
             //TODO die Konvertierung der Model muss auch noch gemacht werden
-            
-            if (devicelistItems != null) DeviceList = new ObservableCollection<DevicelistItem>(devicelistItems);
+            //TODO An dieser Stelle gucken, ob neue Items hinzugekommen sind. Vergleich der FabNr?! (Linq?)
+            //Ist an dieser Stelle if(DeviceList == null) ... besser oder DeviceList = Devicelist ?? new Obs.... TODO Zeiten messen
+            DeviceList = DeviceList ?? new ObservableCollection<DevicelistItem>();
+            if (devicelistItems != null)
+            {
+                if(DeviceList.Count == 0) DeviceList = new ObservableCollection<DevicelistItem>(devicelistItems);
+                foreach (var d in devicelistItems)
+                {
+                //    //DeviceList.Add(d);
+
+                    if(!(DeviceList.Any(x => x.FabNr == d.FabNr)))
+                        DeviceList.Add(d);
+                    //    //MsgList.Where(x => !SentList.Any(y => y.MsgID == x.MsgID))
+                }
+                //An dieser stelle die Kompletten Objekte vergleichen, ob etwas unterschiedlich ist und nur dann aktualisieren? Idee: einen Hash anlegen und den vergleichen?!
+                // Dann muss aber die Progressbar und alles, was sich viel verändert raus? Oder halt nciht. FÜr die Fälle wenn es etwas läuft muss man halt etwas mehr gucken
+                // Vielleicht ist ein Vergleich über Equals dann doch noch einfacher?
+                //var list = DeviceList.Where(x => devicelistItems.Any(y => y.FabNr == x.FabNr));
+            }
             //if (devices != null) DeviceList = new ObservableCollection<DevicelistItem>(list);
             IsBusy = false;
         }

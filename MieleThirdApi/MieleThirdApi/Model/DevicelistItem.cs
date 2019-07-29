@@ -1,15 +1,21 @@
 ﻿using MieleThirdApi.Data;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace MieleThirdApi.Model
 {
-    public class DevicelistItem
+    public class DevicelistItem : INotifyPropertyChanged
     {
         public string FabNr { get; private set; }
         public string IconUri { get; set; }
-        public string Name { get; set; }
+        string _name;
+        public string Name {
+            get { return _name; }
+            set { _name = value; OnPropertyChanged(); }
+        }
         public string Status { get; set; }
         public string EndeZeit { get; set; }
         public double ProgressBarValue { get; set; }
@@ -96,5 +102,13 @@ namespace MieleThirdApi.Model
             //return (elapsedMinutes / totalMinutes);      
             return .1;
         }
+
+        #region INotifyPropertyChanges Handler
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName]string propertyName = "") =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        #endregion
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using MieleThirdApi.Model;
@@ -18,6 +19,39 @@ namespace MieleThirdApi.Data
         {
             _restApi = restApi;
         }
+
+        public void StopPolling()
+        {
+            _pollingIsActive = false;
+            //TODO einen angefangenen Task müsste ich auch noch abbrechen. Cancelation Token
+        }
+
+        private bool _pollingIsActive = true;
+        public void StartPolling()
+        {
+            Xamarin.Forms.Device.StartTimer(TimeSpan.FromSeconds(3), () =>
+            {
+                try
+                {
+                    Task.Run(async () =>
+                    {
+                        var list = await GetDevicelistItemsAsync();
+                        //await Task.Delay(2000);
+                        // So erweitern, dass hier geschaut wird, ob sich etwas geändert hat
+                        DeviceListUpdated?.Invoke(this, new DeviceListEventArgs() { DevicelistItemList = list});
+                    }); //Führt er das hier denn nu eigentlich auf dem MainThread aus? Oder Macht der einen Thread auf und arbeitet das ab, so wie es sollte
+
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Exception in {nameof(StartPolling)} : {ex.Message}");
+                }
+                return _pollingIsActive; // True = Repeat again, False = Stop the timer
+            });
+        }
+
+        public event EventHandler<DeviceListEventArgs> DeviceListUpdated;
+
 
         public async Task<Appliance> GetDeviceAsync(string fabNr)
         {   

@@ -10,5 +10,10 @@ namespace MieleThirdApi.Data
     {
         Task<List<DevicelistItem>> GetDevicelistItemsAsync();
         Task<Appliance> GetDeviceAsync(string fabNr);
+        void StartPolling();
+
+        void StopPolling();
+
+        event EventHandler<DeviceListEventArgs> DeviceListUpdated;
     }
 }
