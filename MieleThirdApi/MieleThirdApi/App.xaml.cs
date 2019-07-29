@@ -16,20 +16,15 @@ namespace MieleThirdApi
         {
             watch.Start();
             //System.Diagnostics.Debug.WriteLine($"Zeitmessung {App.watch.ElapsedMilliseconds} ms");
+
             InitializeComponent();
 
-            //Debug.WriteLine("Sowieso");
             LoginManager = LoginManager ?? new LoginMockManager();
             //(LoginManager = LoginManager ?? new LoginManager();
                         
             MainPage = new NavigationPage(new MainPage());
             MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#1F2328"));
             MainPage.SetValue(NavigationPage.BarTextColorProperty, Color.FromHex("#a1a1a1"));
-
-          //if ((!LoginManager.IsLoggedIn().Result))
-          //  {
-          //      MainPage.Navigation.PushModalAsync(new LoginView());
-          //  }
         }
 
 
@@ -40,10 +35,12 @@ namespace MieleThirdApi
             {
                 await MainPage.Navigation.PushModalAsync(new LoginView());
             }
+
+            if(!watch.IsRunning) watch.Start();
             Debug.WriteLine("OnStart");
         }
 
-        protected override void OnSleep()
+        protected override async void OnSleep()
         {
             // Handle when your app sleeps
             Debug.WriteLine("OnSleep");

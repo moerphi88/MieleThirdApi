@@ -16,10 +16,7 @@ namespace MieleThirdApi.Data
         //static string LoginURL = "https://api.mcs3.miele.com/thirdparty/token/?client_id=a19cbe63-3d3b-4581-a493-7f9a7f44e0ec&client_secret=vn8i8ndb5r9su2a9wcos1awz83sir4zu&vg=de-DE&grant_type=password&username=math26%40miele.de&password=miele.math26";
         static string LoginURL = "https://api.mcs3.miele.com/thirdparty/token/?client_id=a19cbe63-3d3b-4581-a493-7f9a7f44e0ec&client_secret=vn8i8ndb5r9su2a9wcos1awz83sir4zu&vg=de-DE&grant_type=password&username={0}&password={1}";
 
-        public LoginManager()
-        {
-            
-        }
+        public LoginManager(){}
 
         public string GetAccessToken()
         {
@@ -83,11 +80,9 @@ namespace MieleThirdApi.Data
             return returnValue;
         }
 
-        public async Task<bool> Logout()
+        public bool Logout()
         {
-            // Here goes the logout code. Delete data from device etc.
             _token = null;
-            await Task.Delay(1000);
             LoggedOut?.Invoke(this, new EventArgs());
             return true;
         }

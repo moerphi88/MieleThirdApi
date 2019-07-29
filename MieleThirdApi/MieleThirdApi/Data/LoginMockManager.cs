@@ -14,26 +14,23 @@ namespace MieleThirdApi.Data
         public event EventHandler LoggedOut;
         private Token _token;
         private static readonly string SECURE_STORAGE_OAUTH_KEY = "OAUTH_TOKEN";
-
-        public LoginMockManager()
-        {
-
-        }
-
+        public LoginMockManager(){}
         private async Task<bool> SaveAccessTokenToSecureStorage()
         {
-            try
-            {
-                _token.Timestamp = DateTime.Now; //add the savedAt timestamp
-                var stringToBeSaved = JsonConvert.SerializeObject(_token);
-                await SecureStorage.SetAsync(SECURE_STORAGE_OAUTH_KEY, stringToBeSaved);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Exception in {nameof(SaveAccessTokenToSecureStorage)} : {ex.Message}");
-                return false;
-            }
+            //try
+            //{
+            //    _token.Timestamp = DateTime.Now; //add the savedAt timestamp
+            //    var stringToBeSaved = JsonConvert.SerializeObject(_token);
+            //    await SecureStorage.SetAsync(SECURE_STORAGE_OAUTH_KEY, stringToBeSaved);
+            //    return true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    Debug.WriteLine($"Exception in {nameof(SaveAccessTokenToSecureStorage)} : {ex.Message}");
+            //    return false;
+            //}
+            await Task.Delay(100);
+            return false;
         }
 
         private async Task<bool> GetAccessTokenFromSecureStorage()
@@ -61,9 +58,10 @@ namespace MieleThirdApi.Data
         public async Task<bool> IsLoggedIn()
         {
             if (_token == null)
-            {   //Das darf hier nicht bleiben. IsLoggedIn sollte auf den Token achten. Ich muss noch auf die Ablaufzeiten achten etc.
+            {
+                // if token == null, the current session is not logged in. But Check storage if the former seesion has logged in
                 var result = await GetAccessTokenFromSecureStorage();
-                return result; 
+                return result;
             }
             return true;
         }
@@ -78,26 +76,26 @@ namespace MieleThirdApi.Data
                     returnValue = true;
                 }
             }
+
             var tokenResponse = "{\"access_token\":\"DE_4ffe8e9614659ee918d54cc99cb356cb\",\"refresh_token\":\"DE_1e1f3e0b84e7b01d3e03586031d83992\",\"token_type\":\"Bearer\",\"expires_in\":2592000}";
-            _token = await Task.Run(() => JsonConvert.DeserializeObject<Token>(tokenResponse));
-            await SaveAccessTokenToSecureStorage(); //Hier noch auf Erfolg achten?! Und die Funktion braucht ja eig. keinen Token übergeben bekommen?! Die kann jad den globalen nehmen
-            await Task.Delay(1000);
+
+            try
+            {
+                _token = await Task.Run(() => JsonConvert.DeserializeObject<Token>(tokenResponse));
+            } catch(Exception ex)
+            {
+                Debug.WriteLine($"Exception in {nameof(LoginAsync)} : {ex.Message}");
+                returnValue = false;
+            }
+            returnValue = await SaveAccessTokenToSecureStorage();
+
             return returnValue; 
         }
 
-        public async Task<bool> Logout()
+        public bool Logout()
         {
-            // Here goes the logout code. Delete data from device etc.
-            try
-            {
-                _token = null;
-                SecureStorage.Remove(SECURE_STORAGE_OAUTH_KEY);
-                //LoggedOut?.Invoke(this, new EventArgs()); 
-                await Task.Delay(500);
-            } catch (Exception ex)
-            {
-                Debug.WriteLine($"Exception in {nameof(Logout)} : {ex.Message}");
-            }
+            _token = null;
+            SecureStorage.Remove(SECURE_STORAGE_OAUTH_KEY);
             return true;
         }
 

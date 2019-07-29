@@ -11,8 +11,7 @@ namespace MieleThirdApi.Data
         string GetAccessToken();
         Task<bool> IsLoggedIn();
         Task<bool> LoginAsync(Credential credential);
-        Task<bool> Logout();
-
+        bool Logout();
         Task<bool> Refresh();
 
         event EventHandler LoggedOut;
