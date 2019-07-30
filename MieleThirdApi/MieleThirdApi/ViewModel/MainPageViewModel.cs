@@ -18,7 +18,13 @@ namespace MieleThirdApi.ViewModel
             //GetDeviceList();
             UpdateCommand = new Command(async () => await GetDeviceList());
             NavigateCommand = new Command(async () => await NavigateToDetailPageAsync());
-        }       
+            NavigateToSettingsCommand = new Command(async () => await NavigateToSettingsPageAsync());
+        }
+
+        private async Task NavigateToSettingsPageAsync()
+        {
+            await _navigation.PushAsync(new SettingsPage());
+        }
 
         private bool _pollingIsActive = true;
         private string _fabNr = "12345678";
@@ -84,7 +90,10 @@ namespace MieleThirdApi.ViewModel
         }
 
         public ICommand UpdateCommand { get; set; }
+
         public ICommand NavigateCommand { get; set; }
+
+        public ICommand NavigateToSettingsCommand { get; set; }
 
         public async Task GetDeviceList()
         {

@@ -4,6 +4,9 @@
              xmlns:local="clr-namespace:MieleThirdApi"
              x:Class="MieleThirdApi.View.MainPage"
              BackgroundColor="DarkGray">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Einstellungen" IconImageSource="ic_program_generic_default" Command="{Binding NavigateToSettingsCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

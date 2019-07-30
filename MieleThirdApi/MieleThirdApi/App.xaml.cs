@@ -19,8 +19,8 @@ namespace MieleThirdApi
 
             InitializeComponent();
 
-            //LoginManager = LoginManager ?? new LoginMockManager();
-            LoginManager = LoginManager ?? new LoginManager();
+            LoginManager = LoginManager ?? new LoginMockManager();
+            //LoginManager = LoginManager ?? new LoginManager();
 
             MainPage = new NavigationPage(new MainPage());
             MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#1F2328"));
