@@ -9,7 +9,7 @@ using Xamarin.Essentials;
 
 namespace MieleThirdApi.Data
 {
-    public class LoginManagerBase
+    public class LoginManagerBase : ILoginManager
     {
         protected Token _token;
 
@@ -52,21 +52,21 @@ namespace MieleThirdApi.Data
                 Debug.WriteLine($"Exception in {nameof(GetAccessTokenFromSecureStorage)} : {ex.Message}");
                 return false;
             }
-        }        
+        }
 
-        //This solution might not be the smartest and nicest, but it works. What would be a better solution?
-        protected virtual bool Logout()
+        public bool Logout()
         {
             _token = null;
             SecureStorage.Remove(SECURE_STORAGE_OAUTH_KEY);
             return true;
         }
 
-        protected virtual string GetAccessToken()
+        public string GetAccessToken()
         {
             return _token?.AccessToken;
         }
-        protected virtual async Task<bool> IsLoggedIn()
+
+        public async Task<bool> IsLoggedIn()
         {
             if (_token == null)
             {
@@ -76,5 +76,19 @@ namespace MieleThirdApi.Data
             }
             return true;
         }
+
+        #region virtual
+
+        public virtual Task<bool> LoginAsync(Credential credential)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual Task<bool> Refresh()
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }

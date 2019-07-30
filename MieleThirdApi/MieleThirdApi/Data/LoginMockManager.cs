@@ -9,16 +9,11 @@ using Xamarin.Essentials;
 
 namespace MieleThirdApi.Data
 {
-    public class LoginMockManager : LoginManagerBase, ILoginManager
+    public class LoginMockManager : LoginManagerBase
     {        
         public LoginMockManager() : base() {}
         
-        public async new Task<bool> IsLoggedIn()
-        {
-            return await base.IsLoggedIn();
-        }
-
-        public async Task<bool> LoginAsync(Credential credential)
+        override public async Task<bool> LoginAsync(Credential credential)
         {
             var returnValue = false;
             if(!String.IsNullOrEmpty(credential?.User) && !String.IsNullOrEmpty(credential?.Password))
@@ -47,21 +42,11 @@ namespace MieleThirdApi.Data
             return returnValue; 
         }
 
-        public async Task<bool> Refresh()
+        override public async Task<bool> Refresh()
         {
             await Task.Delay(1000);
             _token = new Token();
             return true;
-        }
-
-        public new bool Logout()
-        {
-            return base.Logout();
-        }
-
-        public new string GetAccessToken()
-        {
-            return base.GetAccessToken();
         }
     }
 }

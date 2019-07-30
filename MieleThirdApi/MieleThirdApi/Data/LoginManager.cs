@@ -9,18 +9,14 @@ using System.Threading.Tasks;
 
 namespace MieleThirdApi.Data
 {
-    public class LoginManager : LoginManagerBase, ILoginManager
+    public class LoginManager : LoginManagerBase
     {
         //static string LoginURL = "https://api.mcs3.miele.com/thirdparty/token/?client_id=a19cbe63-3d3b-4581-a493-7f9a7f44e0ec&client_secret=vn8i8ndb5r9su2a9wcos1awz83sir4zu&vg=de-DE&grant_type=password&username=math26%40miele.de&password=miele.math26";
         static string LoginURL = "https://api.mcs3.miele.com/thirdparty/token/?client_id=a19cbe63-3d3b-4581-a493-7f9a7f44e0ec&client_secret=vn8i8ndb5r9su2a9wcos1awz83sir4zu&vg=de-DE&grant_type=password&username={0}&password={1}";
 
         public LoginManager(){}
 
-        public async new Task<bool> IsLoggedIn()
-        {
-            return await base.IsLoggedIn();
-        }
-        public async Task<bool> LoginAsync(Credential credential)
+        override public async Task<bool> LoginAsync(Credential credential)
         {
             var _client = new HttpClient();
 
@@ -74,18 +70,9 @@ namespace MieleThirdApi.Data
             return returnValue;
         }
 
-        public async Task<bool> Refresh()
+        override public async Task<bool> Refresh()
         {
-            throw new NotImplementedException();
-        }
-        public new bool Logout()
-        {
-            return base.Logout();
-        }
-
-        public new string GetAccessToken()
-        {
-            return base.GetAccessToken();
+            return await base.Refresh();
         }
     }
 }
