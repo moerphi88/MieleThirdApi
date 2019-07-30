@@ -9,29 +9,17 @@ using System.Threading.Tasks;
 
 namespace MieleThirdApi.Data
 {
-    public class LoginManager : ILoginManager
+    public class LoginManager : LoginManagerBase, ILoginManager
     {
-        public event EventHandler LoggedOut;
-        private Token _token;
         //static string LoginURL = "https://api.mcs3.miele.com/thirdparty/token/?client_id=a19cbe63-3d3b-4581-a493-7f9a7f44e0ec&client_secret=vn8i8ndb5r9su2a9wcos1awz83sir4zu&vg=de-DE&grant_type=password&username=math26%40miele.de&password=miele.math26";
         static string LoginURL = "https://api.mcs3.miele.com/thirdparty/token/?client_id=a19cbe63-3d3b-4581-a493-7f9a7f44e0ec&client_secret=vn8i8ndb5r9su2a9wcos1awz83sir4zu&vg=de-DE&grant_type=password&username={0}&password={1}";
 
         public LoginManager(){}
 
-        public string GetAccessToken()
+        public async new Task<bool> IsLoggedIn()
         {
-            return _token?.AccessToken;
+            return await base.IsLoggedIn();
         }
-
-        public async Task<bool> IsLoggedIn()
-        {
-            if (_token != null)
-            {
-                return true;
-            }
-            else return false;
-        }
-
         public async Task<bool> LoginAsync(Credential credential)
         {
             var _client = new HttpClient();
@@ -77,21 +65,27 @@ namespace MieleThirdApi.Data
                 Debug.WriteLine(@"				ERROR {0}", ex.Message);
             }
 
-            return returnValue;
-        }
+            if (!(returnValue = await SaveAccessTokenToSecureStorage()))
+            {
+                // reset token if saving to storage fails
+                _token = null;
+            }
 
-        public bool Logout()
-        {
-            _token = null;
-            LoggedOut?.Invoke(this, new EventArgs());
-            return true;
+            return returnValue;
         }
 
         public async Task<bool> Refresh()
         {
-            await Task.Delay(1000);
-            _token = new Token();
-            return true;
+            throw new NotImplementedException();
+        }
+        public new bool Logout()
+        {
+            return base.Logout();
+        }
+
+        public new string GetAccessToken()
+        {
+            return base.GetAccessToken();
         }
     }
 }

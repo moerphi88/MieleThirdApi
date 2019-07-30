@@ -13,8 +13,5 @@ namespace MieleThirdApi.Data
         Task<bool> LoginAsync(Credential credential);
         bool Logout();
         Task<bool> Refresh();
-
-        event EventHandler LoggedOut;
-
     }
 }
