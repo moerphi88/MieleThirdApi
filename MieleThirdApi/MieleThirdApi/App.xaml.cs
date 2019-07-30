@@ -25,8 +25,6 @@ namespace MieleThirdApi
             MainPage = new NavigationPage(new MainPage());
             MainPage.SetValue(NavigationPage.BarBackgroundColorProperty, Color.FromHex("#1F2328"));
             MainPage.SetValue(NavigationPage.BarTextColorProperty, Color.FromHex("#a1a1a1"));
-
-            LoginManager.Logout();
         }
 
 
